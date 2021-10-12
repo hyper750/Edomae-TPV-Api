@@ -4,5 +4,6 @@ sqlalchemy
 psycopg2-binary
 flask_sqlalchemy
 flask_marshmallow
+flask_migrate
 arrow
 pytz
