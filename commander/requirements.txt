@@ -1,0 +1,8 @@
+flask_restful
+flask_jwt
+sqlalchemy
+psycopg2-binary
+flask_sqlalchemy
+flask_marshmallow
+arrow
+pytz
