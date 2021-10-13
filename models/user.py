@@ -1,5 +1,6 @@
 from settings import DB, MA
-from sqlalchemy import BigInteger, Column, String
+from sqlalchemy import BigInteger, Boolean, Column, String
+from sqlalchemy.sql import expression
 
 
 class User(DB.Model):
@@ -16,6 +17,9 @@ class User(DB.Model):
     # Password sha512 hash
     password = Column(String(length=128), nullable=False)
 
+    # Is administrator
+    admin = Column(Boolean, nullable=False, server_default=expression.false())
+
 
 class UserSchema(MA.Schema):
     class Meta:
@@ -23,5 +27,6 @@ class UserSchema(MA.Schema):
         fields = (
             'id',
             'username',
-            'email'
+            'email',
+            'admin'
         )
