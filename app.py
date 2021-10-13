@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 
 from settings import DB, FLASK_CONFIG, MA
 
-app = Flask('comandero-api')
+app = Flask('Commander')
 
 # Configure app
 app.config.update(FLASK_CONFIG)
