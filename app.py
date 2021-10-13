@@ -1,6 +1,8 @@
 from flask import Flask
+from flask_jwt import JWT
 from flask_migrate import Migrate
 
+from logic.user import authenticate_user, identity_user
 from settings import DB, FLASK_CONFIG, MA
 
 app = Flask('Commander')
@@ -17,7 +19,8 @@ migrate = Migrate(app, DB)
 # Initialize database serializer
 MA.init_app(app)
 
-# TODO: Initialize jwt
+# Initialize jwt
+jwt = JWT(app, authenticate_user, identity_user)
 
 # TODO: Initialize api resources
 
