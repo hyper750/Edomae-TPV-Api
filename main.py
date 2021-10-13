@@ -1,6 +1,6 @@
 from flask import Flask
 
-from commander.settings import FLASK_CONFIG
+from settings import FLASK_CONFIG
 
 app = Flask('Commander')
 

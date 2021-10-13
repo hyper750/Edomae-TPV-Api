@@ -2,7 +2,7 @@ import os
 
 FLASK_CONFIG = {
     # Production mode
-    'DEBUG': False,
+    'DEBUG': True,
 
     # Secret key
     'SECRET_KEY': os.environ.get('SECRET_KEY'),
