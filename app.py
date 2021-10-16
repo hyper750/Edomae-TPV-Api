@@ -1,8 +1,8 @@
 from flask import Flask
-from flask_jwt import JWT
+from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 
-from logic.user import authenticate_user, identity_user
+from routes import API_ROUTES
 from settings import DB, FLASK_CONFIG, MA
 
 app = Flask('Commander')
@@ -20,9 +20,10 @@ migrate = Migrate(app, DB)
 MA.init_app(app)
 
 # Initialize jwt
-jwt = JWT(app, authenticate_user, identity_user)
+jwt = JWTManager(app)
 
-# TODO: Initialize api resources
+# Initialize api routes
+API_ROUTES.init_app(app)
 
 if __name__ == '__main__':
     app.run()

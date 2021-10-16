@@ -14,6 +14,7 @@ FLASK_CONFIG = {
 
     # Secret key
     'SECRET_KEY': SECRET_KEY,
+    'JWT_SECRET_KEY': SECRET_KEY,
 
     # Database url
     # Eg: postgresql://root:password@127.0.0.1:5432/dbname
