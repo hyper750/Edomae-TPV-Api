@@ -7,3 +7,4 @@ flask_marshmallow
 flask_migrate
 arrow
 pytz
+redis
