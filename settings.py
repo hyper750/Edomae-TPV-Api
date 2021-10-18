@@ -1,9 +1,6 @@
 import os
 from datetime import timedelta
 
-from flask_marshmallow import Marshmallow
-from flask_sqlalchemy import SQLAlchemy
-
 HASH_NAME = 'sha512'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ITERATIONS = 5000
@@ -33,9 +30,6 @@ FLASK_CONFIG = {
     'PROPAGATE_EXCEPTIONS': True
 }
 
-
-DB = SQLAlchemy()
-MA = Marshmallow()
 
 # Redis settings
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
