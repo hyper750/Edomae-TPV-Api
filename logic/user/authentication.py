@@ -29,7 +29,7 @@ def identity_user(payload: dict) -> models.User:
 
 def revoke_access_token(jti: str):
     redis = create_redis_revoke_jwt_token()
-    redis.set(jti, None, ex=JTI_EXPIRATION)
+    redis.set(jti, '', ex=JTI_EXPIRATION)
 
 
 @JWT.token_in_blocklist_loader
