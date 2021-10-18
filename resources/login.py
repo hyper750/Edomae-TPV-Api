@@ -8,7 +8,7 @@ class Auth(Resource):
     def post(self):
         parameters = parse_login()
 
-        if user := authenticate_user(**parameters) is not None:
+        if user := authenticate_user(**parameters):
             token = create_access_token(user.id)
             return {
                 'token': token
