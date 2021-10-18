@@ -1,6 +1,6 @@
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt, jwt_required
 from flask_restful import Resource
-from logic.user import authenticate_user, parse_login
+from logic.user import authenticate_user, parse_login, revoke_access_token
 
 
 class Auth(Resource):
@@ -15,8 +15,13 @@ class Auth(Resource):
             }
 
         return {
-            'error': 'User or password are not correct'
+            'msg': 'User or password are not correct'
         }, 401
 
+    @jwt_required()
     def delete(self):
-        return 'destroy jwt'
+        jti = get_jwt()['jti']
+        revoke_access_token(jti)
+        return {
+            'msg': 'Access token revoked'
+        }

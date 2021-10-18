@@ -1,7 +1,8 @@
 import hashlib
 
 import models
-from settings import HASH_NAME, ITERATIONS, SECRET_KEY
+from logic.redis import create_redis_revoke_jwt_token
+from settings import HASH_NAME, ITERATIONS, JTI_EXPIRATION, SECRET_KEY
 
 
 def authenticate_user(username: str, password: str) -> models.User:
@@ -21,3 +22,8 @@ def identity_user(payload: dict) -> models.User:
     user_id = payload.get('identity')
     user = models.User.query.filter_by(id=user_id).first()
     return user
+
+
+def revoke_access_token(jti: str):
+    redis = create_redis_revoke_jwt_token()
+    redis.set(jti, None, ex=JTI_EXPIRATION)
