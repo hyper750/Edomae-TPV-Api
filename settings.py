@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +8,8 @@ HASH_NAME = 'sha512'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ITERATIONS = 5000
 
+# JTI token expiration
+JTI_EXPIRATION = timedelta(days=1)
 
 FLASK_CONFIG = {
     # Production mode
@@ -22,6 +25,9 @@ FLASK_CONFIG = {
 
     # Disable before and after commit signals
     'SQLALCHEMY_TRACK_MODIFICATIONS': False,
+
+    # JWT token expiration
+    'JWT_ACCESS_TOKEN_EXPIRES': JTI_EXPIRATION
 }
 
 
