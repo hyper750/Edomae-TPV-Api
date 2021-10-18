@@ -2,7 +2,10 @@ import hashlib
 
 import models
 from adapter.redis import create_redis_revoke_jwt_token
+from flask_jwt_extended import JWTManager
 from settings import HASH_NAME, ITERATIONS, JTI_EXPIRATION, SECRET_KEY
+
+JWT = JWTManager()
 
 
 def authenticate_user(username: str, password: str) -> models.User:
@@ -27,3 +30,11 @@ def identity_user(payload: dict) -> models.User:
 def revoke_access_token(jti: str):
     redis = create_redis_revoke_jwt_token()
     redis.set(jti, None, ex=JTI_EXPIRATION)
+
+
+@JWT.token_in_blocklist_loader
+def check_if_token_is_revoked(jwt_header, jwt_payload):
+    jti = jwt_payload["jti"]
+    redis = create_redis_revoke_jwt_token()
+    token_in_redis = redis.get(jti)
+    return token_in_redis is not None
