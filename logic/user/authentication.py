@@ -43,12 +43,12 @@ def check_if_token_is_revoked(jwt_header, jwt_payload):
 @JWT.expired_token_loader
 def custom_expired_token_response(jwt_header, jwt_payload):
     return {
-        'msg': 'Access token expired'
+        'message': 'Access token expired'
     }
 
 
 @JWT.revoked_token_loader
 def custom_revoked_token_response(jwt_header, jwt_payload):
     return {
-        'msg': 'Access token revoked'
+        'message': 'Access token revoked'
     }
