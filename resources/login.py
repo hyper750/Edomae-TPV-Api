@@ -15,7 +15,7 @@ class Auth(Resource):
             }
 
         return {
-            'message': 'User or password are not correct'
+            'msg': 'User or password are not correct'
         }, 401
 
     @jwt_required()
@@ -23,5 +23,5 @@ class Auth(Resource):
         jti = get_jwt()['jti']
         revoke_access_token(jti)
         return {
-            'message': 'Access token revoked'
+            'msg': 'Access token revoked'
         }
