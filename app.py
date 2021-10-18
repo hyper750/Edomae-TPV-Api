@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 
+from logic.user import JWT
 from routes import API_ROUTES
 from settings import DB, FLASK_CONFIG, MA
 
@@ -20,7 +20,7 @@ migrate = Migrate(app, DB)
 MA.init_app(app)
 
 # Initialize jwt
-jwt = JWTManager(app)
+JWT.init_app(app)
 
 # Initialize api routes
 API_ROUTES.init_app(app)
