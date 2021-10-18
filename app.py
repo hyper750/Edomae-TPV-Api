@@ -1,10 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
 
-from adapter.db import DB, MA
 from logic.user import JWT
 from routes import API_ROUTES
-from settings import FLASK_CONFIG
+from settings import DB, FLASK_CONFIG, MA
 
 app = Flask('Commander')
 
