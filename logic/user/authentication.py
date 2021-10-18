@@ -1,7 +1,7 @@
 import hashlib
 
 import models
-from logic.redis import create_redis_revoke_jwt_token
+from redis_adapter import create_redis_revoke_jwt_token
 from settings import HASH_NAME, ITERATIONS, JTI_EXPIRATION, SECRET_KEY
 
 
