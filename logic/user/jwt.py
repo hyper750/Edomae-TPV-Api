@@ -1,5 +1,5 @@
+from adapter.redis import create_redis_revoke_jwt_token
 from flask_jwt_extended import JWTManager
-from logic.redis import create_redis_revoke_jwt_token
 
 JWT = JWTManager()
 
