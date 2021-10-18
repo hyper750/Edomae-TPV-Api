@@ -27,7 +27,10 @@ FLASK_CONFIG = {
     'SQLALCHEMY_TRACK_MODIFICATIONS': False,
 
     # JWT token expiration
-    'JWT_ACCESS_TOKEN_EXPIRES': JTI_EXPIRATION
+    'JWT_ACCESS_TOKEN_EXPIRES': JTI_EXPIRATION,
+
+    # Propagate JWT exceptions to be able to catch through the loader
+    'PROPAGATE_EXCEPTIONS': True
 }
 
 
