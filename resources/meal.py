@@ -9,7 +9,7 @@ class MealResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self, id: int):
-        meal = Meal.query.get(id=id)
+        meal = Meal.query.get(id)
 
         if not meal:
             return '', 404
