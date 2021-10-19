@@ -1,7 +1,7 @@
 from flask_restful import reqparse
 
 
-def parse_object_meal():
+def parse_object_meal() -> dict:
     parser = reqparse.RequestParser()
 
     parser = parser.add_argument('enabled', type=bool)
@@ -9,7 +9,7 @@ def parse_object_meal():
     parser = parser.add_argument('price', required=True, type=float)
     parser = parser.add_argument('imatge_name', required=True, type=str)
 
-    return parser
+    return parser.parse_args()
 
 
 def parse_query_meal():
