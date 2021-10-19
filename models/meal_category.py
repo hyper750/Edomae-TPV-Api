@@ -8,7 +8,7 @@ class MealCategory(DB.Model):
     id = Column(BigInteger, primary_key=True)
 
     # Meal category name, Eg: Entrantes, Postre, Bebida
-    name = Column(String(250), unique=True)
+    name = Column(String(250), unique=True, nullable=False)
 
     # Category imatge
     imatge_name = Column(String(250), nullable=False)
