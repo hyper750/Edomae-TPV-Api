@@ -7,12 +7,17 @@ class MealCategory(DB.Model):
 
     id = Column(BigInteger, primary_key=True)
 
+    # Meal category name, Eg: Entrantes, Postre, Bebida
     name = Column(String(250), unique=True)
+
+    # Category imatge
+    imatge_name = Column(String(250), nullable=False)
 
 
 class MealCategorySchema(MA.Schema):
     class Meta:
         fields = (
             'id',
-            'name'
+            'name',
+            'imatge_name'
         )
