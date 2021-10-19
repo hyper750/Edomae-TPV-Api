@@ -12,5 +12,12 @@ def parse_object_meal() -> dict:
     return parser.parse_args()
 
 
-def parse_query_meal():
-    pass
+def parse_query_meal() -> dict:
+    parser = reqparse.RequestParser()
+
+    parser = parser.add_argument('enabled', type=bool)
+    parser = parser.add_argument('name', type=str)
+    parser = parser.add_argument('price', type=float)
+    parser = parser.add_argument('imatge_name', type=str)
+
+    return parser.parse_args()
