@@ -35,3 +35,14 @@ FLASK_CONFIG = {
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
 REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
 REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
+
+# Static files
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+
+# Root static dir
+STATIC_DIR = os.path.join(PROJECT_DIR, 'static')
+STATIC_URL = '/static/'
+
+# Meal imatges folder
+MEAL_IMATGES_DIR = os.path.join(STATIC_DIR, 'meal')
+MEAL_IMATGES_URL = f'{STATIC_URL}meal'
