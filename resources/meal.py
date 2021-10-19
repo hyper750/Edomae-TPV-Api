@@ -1,7 +1,7 @@
 from adapter.db import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from logic.meal import parse_object_meal
+from logic.meal import parse_object_meal, parse_query_meal
 from models import Meal, MealSchema
 
 
@@ -22,14 +22,23 @@ class MealResource(Resource):
         return '', 204
 
     def put(self, id: int):
-        pass
+        params = parse_query_meal()
+        meal = Meal.query.get(id)
+        for key, value in params.items():
+            setattr(meal, key, value)
+
+        DB.session.commit()
+
+        return MealSchema().dump(meal)
 
 
 class MealsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self):
-        meals = Meal.query.filter_by()
+        meals = Meal.query.filter_by(
+            **parse_query_meal()
+        )
         return MealSchema(many=True).dump(meals)
 
     def post(self):
