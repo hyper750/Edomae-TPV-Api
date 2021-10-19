@@ -21,8 +21,11 @@ class Meal(DB.Model):
     price = Column(Float(precision=2), nullable=False)
 
     # Category of the meal, Eg: Entrante, Postre...
-    category = Column(BigInteger, ForeignKey(
-        'meal_category.id', ondelete='SET NULL'), nullable=True)
+    category = Column(
+        BigInteger,
+        ForeignKey('meal_category.id', ondelete='SET NULL'),
+        nullable=True
+    )
 
     # Meal imatge path
     imatge_name = Column(String(250), nullable=False)
