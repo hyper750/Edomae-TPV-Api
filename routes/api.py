@@ -8,4 +8,4 @@ API_ROUTES.add_resource(Auth, '/auth')
 
 # Meal routes
 API_ROUTES.add_resource(MealResource, '/meal/<int:id>')
-API_ROUTES.add_resource(MealsResource, '/meal/')
+API_ROUTES.add_resource(MealsResource, '/meal')
