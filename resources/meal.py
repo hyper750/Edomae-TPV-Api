@@ -22,8 +22,12 @@ class MealResource(Resource):
         return '', 204
 
     def put(self, id: int):
-        params = parse_query_meal()
         meal = Meal.query.get(id)
+
+        if not meal:
+            return '', 404
+
+        params = parse_query_meal()
         for key, value in params.items():
             setattr(meal, key, value)
 
