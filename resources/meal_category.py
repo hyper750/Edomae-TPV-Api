@@ -21,7 +21,7 @@ class MealCategoryResource(Resource):
         return MealSchema().dump(category)
 
     def delete(self, id: int):
-        MealCategory.query_filter_by(id=id).delete()
+        MealCategory.query.filter_by(id=id).delete()
         return '', 204
 
     def put(self, id: int):
