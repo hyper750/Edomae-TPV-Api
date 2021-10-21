@@ -12,6 +12,8 @@ class MealCategory(DB.Model):
 
     # Category imatge
     # TODO: Add custom field that saves the path of the file/imatge and saves the file to folder
+    # Save the charfield like that: MEAL_CATEGORY_URL/filename.jpg
+    # Save the file inside the following folder: MEAL_CATEGORY_IMATGES_DIR/filename.jpg
     imatge = Column(String(250), nullable=False)
 
 
