@@ -28,7 +28,7 @@ class Meal(DB.Model):
     )
 
     # Meal imatge path
-    imatge_name = Column(String(250), nullable=False)
+    imatge = Column(String(250), nullable=False)
 
 
 class MealSchema(MA.Schema):
@@ -40,5 +40,5 @@ class MealSchema(MA.Schema):
             'category',
             'description',
             'price',
-            'imatge_name'
+            'imatge'
         )

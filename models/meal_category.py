@@ -11,7 +11,7 @@ class MealCategory(DB.Model):
     name = Column(String(250), unique=True, nullable=False)
 
     # Category imatge
-    imatge_name = Column(String(250), nullable=False)
+    imatge = Column(String(250), nullable=False)
 
 
 class MealCategorySchema(MA.Schema):
@@ -19,5 +19,5 @@ class MealCategorySchema(MA.Schema):
         fields = (
             'id',
             'name',
-            'imatge_name'
+            'imatge'
         )
