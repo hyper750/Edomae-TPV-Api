@@ -22,6 +22,7 @@ class MealCategoryResource(Resource):
 
     def delete(self, id: int):
         MealCategory.query.filter_by(id=id).delete()
+        DB.session.commit()
         return '', 204
 
     def put(self, id: int):
