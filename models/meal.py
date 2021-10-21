@@ -28,6 +28,7 @@ class Meal(DB.Model):
     )
 
     # Meal imatge path
+    # TODO: Add custom field that saves the path of the file/imatge and saves the file to folder
     imatge = Column(String(250), nullable=False)
 
 
