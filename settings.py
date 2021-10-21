@@ -46,3 +46,7 @@ STATIC_URL = '/static/'
 # Meal imatges folder
 MEAL_IMATGES_DIR = os.path.join(STATIC_DIR, 'meal')
 MEAL_IMATGES_URL = f'{STATIC_URL}meal'
+
+# Meal category imatges folder
+MEAL_CATEGORY_IMATGES_DIR = os.path.join(STATIC_DIR, 'mealCategory')
+MEAL_CATEGORY_URL = f'{STATIC_URL}mealCategory'
