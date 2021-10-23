@@ -1,5 +1,6 @@
 from adapter.db import DB, MA
-from settings import MEAL_CATEGORY_IMATGES_DIR
+from marshmallow.fields import Field
+from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
 from sqlalchemy import BigInteger, Column, String
 from utils.file_field import save_file_field
 
@@ -26,7 +27,16 @@ class MealCategory(DB.Model, CRUDModel):
         super().save()
 
 
+class ImatgeSerilization(Field):
+    def _serialize(self, value, attr: str, obj, **kwargs):
+        if value is None:
+            return value
+        return f'{MEAL_CATEGORY_URL}/{value}'
+
+
 class MealCategorySchema(MA.Schema):
+    imatge = ImatgeSerilization(attribute='imatge')
+
     class Meta:
         fields = (
             'id',
