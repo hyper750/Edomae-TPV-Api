@@ -1,4 +1,3 @@
-from adapter.db import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from logic.meal_category import (
@@ -21,8 +20,9 @@ class MealCategoryResource(Resource):
         return MealSchema().dump(category)
 
     def delete(self, id: int):
-        MealCategory.query.filter_by(id=id).delete()
-        DB.session.commit()
+        category = MealCategory.query.get(id)
+        if category:
+            category.delete()
         return '', 204
 
     def put(self, id: int):
@@ -35,7 +35,7 @@ class MealCategoryResource(Resource):
         for key, value in params.items():
             setattr(category, key, value)
 
-        DB.session.commit()
+        category.save()
 
         return MealCategorySchema().dump(category)
 
@@ -48,8 +48,7 @@ class MealCategoriesResource(Resource):
             **parse_object_meal_category()
         )
 
-        DB.session.add(category)
-        DB.session.commit()
+        category.save()
 
         return MealCategorySchema().dump(category), 201
 
