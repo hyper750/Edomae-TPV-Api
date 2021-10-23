@@ -1,4 +1,5 @@
 from adapter.db import DB, MA
+from flask import request
 from marshmallow.fields import Field
 from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
 from sqlalchemy import BigInteger, Column, String
@@ -31,7 +32,8 @@ class ImatgeSerilization(Field):
     def _serialize(self, value, attr: str, obj, **kwargs):
         if value is None:
             return value
-        return f'{MEAL_CATEGORY_URL}/{value}'
+
+        return f'{request.host_url}{MEAL_CATEGORY_URL}/{value}'
 
 
 class MealCategorySchema(MA.Schema):
