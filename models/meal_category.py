@@ -1,5 +1,7 @@
 from adapter.db import DB, MA
+from settings import MEAL_CATEGORY_IMATGES_DIR
 from sqlalchemy import BigInteger, Column, String
+from utils.file_field import save_file_field
 
 from .crud_model import CRUDModel
 
@@ -13,10 +15,13 @@ class MealCategory(DB.Model, CRUDModel):
     name = Column(String(250), unique=True, nullable=False)
 
     # Category imatge
-    # TODO: Add custom field that saves the path of the file/imatge and saves the file to folder
-    # Save the charfield like that: MEAL_CATEGORY_URL/filename.jpg
-    # Save the file inside the following folder: MEAL_CATEGORY_IMATGES_DIR/filename.jpg
     imatge = Column(String(250), nullable=False)
+
+    def save(self):
+        # Save file to static folder
+        save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
+        # Save imatge filename to db
+        self.imatge = self.imatge.filename
 
 
 class MealCategorySchema(MA.Schema):
