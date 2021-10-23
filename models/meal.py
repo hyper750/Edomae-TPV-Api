@@ -2,8 +2,10 @@ from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Boolean, Column, Float, ForeignKey, String
 from sqlalchemy.sql import expression
 
+from .crud_model import CRUDModel
 
-class Meal(DB.Model):
+
+class Meal(DB.Model, CRUDModel):
     __tablename__ = 'meal'
 
     id = Column(BigInteger, primary_key=True)
