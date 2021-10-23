@@ -1,8 +1,10 @@
 from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Column, String
 
+from .crud_model import CRUDModel
 
-class MealCategory(DB.Model):
+
+class MealCategory(DB.Model, CRUDModel):
     __tablename__ = 'meal_category'
 
     id = Column(BigInteger, primary_key=True)
