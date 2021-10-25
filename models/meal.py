@@ -1,6 +1,9 @@
 from adapter.db import DB, MA
+from serialization import FileSerialization
+from settings import MEAL_IMATGES_DIR, MEAL_IMATGES_URL
 from sqlalchemy import BigInteger, Boolean, Column, Float, ForeignKey, String
 from sqlalchemy.sql import expression
+from utils.file_field import save_file_field
 
 from .crud_model import CRUDModel
 
@@ -30,11 +33,23 @@ class Meal(DB.Model, CRUDModel):
     )
 
     # Meal imatge path
-    # TODO: Add custom field that saves the path of the file/imatge and saves the file to folder
     imatge = Column(String(250), nullable=False)
+
+    def save(self):
+        # Save imatge to dir
+        save_file_field(self.imatge, MEAL_IMATGES_DIR)
+        # Save imatge filename only
+        self.imatge = self.imatge.filename
+        # Save instance
+        return super().save()
 
 
 class MealSchema(MA.Schema):
+    imatge = FileSerialization(
+        upload_url=MEAL_IMATGES_URL,
+        attribute='imatge'
+    )
+
     class Meta:
         fields = (
             'id',

@@ -24,7 +24,7 @@ class MealCategory(DB.Model, CRUDModel):
         # Save imatge filename to db
         self.imatge = self.imatge.filename
         # Save instance
-        super().save()
+        return super().save()
 
 
 class MealCategorySchema(MA.Schema):
