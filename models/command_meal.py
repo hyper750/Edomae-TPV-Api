@@ -1,9 +1,10 @@
 from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Column, ForeignKey, Integer
 
+from .crud_model import CRUDModel
 
 # TODO: Implement resource
-class CommandMeal(DB.Model):
+class CommandMeal(DB.Model, CRUDModel):
     __tablename__ = 'command_meal'
 
     id = Column(BigInteger, primary_key=True)

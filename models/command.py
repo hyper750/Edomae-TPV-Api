@@ -4,8 +4,11 @@ from sqlalchemy.sql import expression
 from sqlalchemy.sql.schema import ForeignKey
 from utils.function_database import UTCNow
 
+from .crud_model import CRUDModel
+
+
 # TODO: Implement resource
-class Command(DB.Model):
+class Command(DB.Model, CRUDModel):
     __tablename__ = 'command'
 
     # Id autoincrement of the command
