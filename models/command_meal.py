@@ -2,6 +2,7 @@ from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Column, ForeignKey, Integer
 
 
+# TODO: Implement resource
 class CommandMeal(DB.Model):
     __tablename__ = 'command_meal'
 

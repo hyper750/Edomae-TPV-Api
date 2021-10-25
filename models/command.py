@@ -38,7 +38,6 @@ class Command(DB.Model):
     # Paid method
     payment_method = Column(
         BigInteger,
-        # TODO: Add model
         ForeignKey('payment_method.id', ondelete='CASCADE'),
         nullable=True
     )
