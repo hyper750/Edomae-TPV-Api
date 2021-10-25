@@ -4,7 +4,7 @@ from sqlalchemy.sql import expression
 
 from .crud_model import CRUDModel
 
-
+# TODO: Add resource
 class PaymentMethod(DB.Model, CRUDModel):
     __tablename__ = 'payment_method'
 
