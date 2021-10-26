@@ -44,7 +44,7 @@ class CommandsResource(Resource):
     def get(self):
         params = parse_query_command()
         page_size = params.pop('page_size')
-        offset = (params.pop('page') - 1) * page_size
+        offset = (params.pop('page_num') - 1) * page_size
 
         commands = Command.query.filter_by(
             **params
