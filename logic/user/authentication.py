@@ -21,12 +21,6 @@ def authenticate_user(username: str, password: str) -> models.User:
     return user
 
 
-def identity_user(payload: dict) -> models.User:
-    user_id = payload.get('identity')
-    user = models.User.query.filter_by(id=user_id).first()
-    return user
-
-
 def revoke_access_token(jti: str):
     redis = create_redis_revoke_jwt_token()
     redis.set(jti, '', ex=JTI_EXPIRATION)
