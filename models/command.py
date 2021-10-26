@@ -7,7 +7,6 @@ from utils.function_database import UTCNow
 from .crud_model import CRUDModel
 
 
-# TODO: Implement resource
 class Command(DB.Model, CRUDModel):
     __tablename__ = 'command'
 
@@ -28,14 +27,6 @@ class Command(DB.Model, CRUDModel):
         server_default=UTCNow()
     )
 
-    # Command last update
-    last_update = Column(
-        DateTime(timezone=True),
-        nullable=False,
-        server_default=UTCNow(),
-        server_onupdate=UTCNow()
-    )
-
     # Paid or not
     paid = Column(Boolean, nullable=False, default=expression.false())
 
@@ -53,7 +44,6 @@ class CommandSchema(MA.Schema):
             'id',
             'user',
             'creation_date',
-            'last_update',
             'paid',
             'payment_method'
         )
