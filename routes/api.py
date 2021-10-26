@@ -20,7 +20,7 @@ API_ROUTES.add_resource(MealCategoriesResource, '/mealCategory')
 
 # Payment methods
 API_ROUTES.add_resource(PaymentMethodResource, '/paymentMethod/<int:id>')
-API_ROUTES.add_resource(PaymentMethodsResource, '/paymentMetho')
+API_ROUTES.add_resource(PaymentMethodsResource, '/paymentMethod')
 
 # Commands
 
