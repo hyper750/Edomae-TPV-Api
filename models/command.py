@@ -32,8 +32,7 @@ class Command(DB.Model, CRUDModel):
     last_update = Column(
         DateTime(timezone=True),
         nullable=False,
-        server_default=UTCNow(),
-        onupdate=UTCNow()
+        server_onupdate=UTCNow()
     )
 
     # Paid or not
