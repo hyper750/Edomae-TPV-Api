@@ -1,1 +1,1 @@
-from utcnow import UTCNow
+from .utcnow import UTCNow
