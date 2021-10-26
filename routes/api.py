@@ -1,7 +1,8 @@
 from flask_restful import Api
 from resources import (
     Auth, MealCategoriesResource, MealCategoryResource,
-    MealResource, MealsResource
+    MealResource, MealsResource,
+    PaymentMethodsResource, PaymentMethodResource
 )
 
 API_ROUTES = Api()
@@ -16,3 +17,11 @@ API_ROUTES.add_resource(MealsResource, '/meal')
 # Meal category rotues
 API_ROUTES.add_resource(MealCategoryResource, '/mealCategory/<int:id>')
 API_ROUTES.add_resource(MealCategoriesResource, '/mealCategory')
+
+# Payment methods
+API_ROUTES.add_resource(PaymentMethodResource, '/paymentMethod/<int:id>')
+API_ROUTES.add_resource(PaymentMethodsResource, '/paymentMetho')
+
+# Commands
+
+# Meal per command
