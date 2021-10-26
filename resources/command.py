@@ -6,7 +6,7 @@ from sqlalchemy import desc
 
 
 class CommandResource(Resource):
-    method_decorator = (jwt_required(),)
+    method_decorators = (jwt_required(),)
 
     def get(self, id: int):
         command = Command.query.get(id)
@@ -39,7 +39,7 @@ class CommandResource(Resource):
 
 
 class CommandsResource(Resource):
-    method_decorator = (jwt_required(),)
+    method_decorators = (jwt_required(),)
 
     def get(self):
         params = parse_query_command()
