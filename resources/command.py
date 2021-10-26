@@ -1,10 +1,7 @@
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required
+from logic.command import parse_object_command, parse_query_command
 from models import Command, CommandSchema
-from logic.command import (
-    parse_object_command,
-    parse_query_command,
-)
 
 
 class CommandResource(Resource):
@@ -51,6 +48,7 @@ class CommandsResource(Resource):
 
     def post(self):
         command = Command(
+            user=get_jwt_identity(),
             **parse_object_command()
         )
         command.save()
