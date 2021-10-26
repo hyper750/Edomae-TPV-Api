@@ -2,6 +2,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
 from logic.command import parse_object_command, parse_query_command
 from models import Command, CommandSchema
+from sqlalchemy import desc
 
 
 class CommandResource(Resource):
@@ -41,9 +42,13 @@ class CommandsResource(Resource):
     method_decorator = (jwt_required(),)
 
     def get(self):
+        params = parse_query_command()
+        page_size = params.pop('page_size')
+        offset = (params.pop('page') - 1) * page_size
+
         commands = Command.query.filter_by(
-            **parse_query_command()
-        )
+            **params
+        ).order_by(desc(Command.creation_date)).offset(offset).limit(page_size)
         return CommandSchema(many=True).dump(commands)
 
     def post(self):
