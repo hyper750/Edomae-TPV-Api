@@ -32,6 +32,7 @@ class Command(DB.Model, CRUDModel):
     last_update = Column(
         DateTime(timezone=True),
         nullable=False,
+        server_default=UTCNow(),
         server_onupdate=UTCNow()
     )
 
