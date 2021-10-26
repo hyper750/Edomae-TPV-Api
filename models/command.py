@@ -36,7 +36,8 @@ class Command(DB.Model, CRUDModel):
         ForeignKey('payment_method.id', ondelete='CASCADE'),
         nullable=True
     )
-
+# TODO: For delivery or local?
+# TODO: Add date range filter
 
 class CommandSchema(MA.Schema):
     class Meta:
