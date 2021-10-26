@@ -24,7 +24,7 @@ class CommandResource(Resource):
         if not command:
             return '', 404
 
-        for key, value in parse_query_command().items():
+        for key, value in parse_object_command().items():
             setattr(command, key, value)
 
         command.save()
