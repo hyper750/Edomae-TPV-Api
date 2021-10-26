@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 70ffb5aa7419
+Revision ID: 57e5106528cb
 Revises: 664e0ea7edcb
-Create Date: 2021-10-26 16:22:23.002133
+Create Date: 2021-10-26 18:48:44.701281
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '70ffb5aa7419'
+revision = '57e5106528cb'
 down_revision = '664e0ea7edcb'
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('id', sa.BigInteger(), nullable=False),
     sa.Column('user', sa.BigInteger(), nullable=False),
     sa.Column('creation_date', sa.DateTime(timezone=True), server_default=sa.text("TIMEZONE('utc', CURRENT_TIMESTAMP)"), nullable=False),
-    sa.Column('last_update', sa.DateTime(timezone=True), nullable=False),
+    sa.Column('last_update', sa.DateTime(timezone=True), server_default=sa.text("TIMEZONE('utc', CURRENT_TIMESTAMP)"), nullable=False),
     sa.Column('paid', sa.Boolean(), nullable=False),
     sa.Column('payment_method', sa.BigInteger(), nullable=True),
     sa.ForeignKeyConstraint(['payment_method'], ['payment_method.id'], ondelete='CASCADE'),
