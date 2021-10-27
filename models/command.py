@@ -40,6 +40,7 @@ class Command(DB.Model, CRUDModel):
     # If the command is a home delivery
     is_home_delivery = Column(
         Boolean,
+        default=expression.false(),
         nullable=False,
     )
 

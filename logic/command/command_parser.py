@@ -6,7 +6,7 @@ def parse_object_command() -> dict:
 
     parser = parser.add_argument('paid', type=bool, store_missing=False)
     parser = parser.add_argument('payment_method', type=int, store_missing=False)
-    parser = parser.add_argument('is_home_delivery', required=True, type=bool, store_missing=False)
+    parser = parser.add_argument('is_home_delivery', type=bool, store_missing=False)
     parser = parser.add_argument('delivery_address', type=str, store_missing=False)
 
     return parser.parse_args()
