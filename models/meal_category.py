@@ -18,6 +18,8 @@ class MealCategory(DB.Model, CRUDModel):
     # Category imatge
     imatge = Column(String(250), nullable=False)
 
+    # TODO: Add order to show on the display
+
     def save(self):
         # Save file to static folder
         save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
