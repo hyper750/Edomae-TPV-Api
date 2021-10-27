@@ -52,8 +52,6 @@ class Command(DB.Model, CRUDModel):
 
     # TODO: Add tables
 
-# TODO: Add date range filter
-
 class CommandSchema(MA.Schema):
     class Meta:
         fields = (

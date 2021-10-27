@@ -1,6 +1,8 @@
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
 from logic.command import parse_object_command, parse_query_command
+from logic.model_filter.date_filter import filter_by_date_range
+from logic.model_filter.paginate import paginate_queryset
 from models import Command, CommandSchema
 from sqlalchemy import desc
 
@@ -43,12 +45,36 @@ class CommandsResource(Resource):
 
     def get(self):
         params = parse_query_command()
-        page_size = params.pop('page_size')
-        offset = (params.pop('page_num') - 1) * page_size
 
-        commands = Command.query.filter_by(
+        # Get filter date filters
+        start_date = params.pop('creation_date__gte', None)
+        end_date = params.pop('creation_date__lte', None)
+
+        # Get paginate filters
+        page_size = params.pop('page_size')
+        page_num = params.pop('page_num')
+
+        # Get queryset
+        commands = Command.query.all()
+
+        # Filter by raw fields
+        commands = commands.filter_by(
             **params
-        ).order_by(desc(Command.creation_date)).offset(offset).limit(page_size)
+        )
+
+        # Filter by creation date
+        # commands = filter_by_date_range(commands, )
+        # if start_date:
+        #     commands = commands.filter(Command.creation_date > start_date)
+        # if end_date:
+        #     commands = commands.filter(Command.creation_date < end_date)
+
+        # Paginate queryset
+        commands = paginate_queryset(commands, page_size, page_num)
+
+        # Order by creation date desc, most recent on the top
+        commands = commands.order_by(desc(Command.creation_date))
+
         return CommandSchema(many=True).dump(commands)
 
     def post(self):

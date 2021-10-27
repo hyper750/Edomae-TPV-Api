@@ -18,6 +18,8 @@ def parse_query_command() -> dict:
     parser = parser.add_argument('page_size', type=int, default=50)
     parser = parser.add_argument('page_num', type=int, default=1)
 
+    parser = parser.add_argument('creation_date__gte', type=str, store_missing=False)
+    parser = parser.add_argument('creation_date__lte', type=str, store_missing=False)
     parser = parser.add_argument('user', type=int, store_missing=False)
     parser = parser.add_argument('paid', type=bool, store_missing=False)
     parser = parser.add_argument('payment_method', type=int, store_missing=False)
