@@ -54,7 +54,7 @@ class CommandsResource(Resource):
         page_num = params.pop('page_num')
 
         # Get queryset
-        commands = Command.query.all()
+        commands = Command.query.filter()
 
         # Filter by raw fields
         commands = commands.filter_by(
