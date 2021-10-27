@@ -66,12 +66,12 @@ class CommandsResource(Resource):
             commands = commands.filter(Command.creation_date > start_date)
         if end_date:
             commands = commands.filter(Command.creation_date < end_date)
+        
+        # Order by creation date desc, most recent on the top
+        commands = commands.order_by(desc(Command.creation_date))
 
         # Paginate queryset
         commands = paginate_queryset(commands, page_size, page_num)
-
-        # Order by creation date desc, most recent on the top
-        commands = commands.order_by(desc(Command.creation_date))
 
         return CommandSchema(many=True).dump(commands)
 
