@@ -1,5 +1,5 @@
 from adapter.db import DB, MA
-from sqlalchemy import BigInteger, Boolean, Column, DateTime
+from sqlalchemy import BigInteger, Boolean, Column, DateTime, String
 from sqlalchemy.sql import expression
 from sqlalchemy.sql.schema import ForeignKey
 from utils.function_database import UTCNow
@@ -36,7 +36,21 @@ class Command(DB.Model, CRUDModel):
         ForeignKey('payment_method.id', ondelete='CASCADE'),
         nullable=True
     )
-# TODO: For delivery or local?
+
+    # If the command is a home delivery
+    is_home_delivery = Column(
+        Boolean,
+        nullable=False,
+    )
+
+    # Address of the delivery
+    delivery_address = Column(
+        String(length=256),
+        nullable=True
+    )
+
+    # TODO: Add tables
+
 # TODO: Add date range filter
 
 class CommandSchema(MA.Schema):
@@ -46,5 +60,7 @@ class CommandSchema(MA.Schema):
             'user',
             'creation_date',
             'paid',
-            'payment_method'
+            'payment_method',
+            'is_home_delivery',
+            'delivery_address'
         )
