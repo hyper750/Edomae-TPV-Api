@@ -1,8 +1,8 @@
 """Addeed delivery to command
 
-Revision ID: adfcc3a15718
+Revision ID: efafd641aeb3
 Revises: a304cc6f39c5
-Create Date: 2021-10-27 18:00:51.311754
+Create Date: 2021-10-27 18:10:44.039404
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'adfcc3a15718'
+revision = 'efafd641aeb3'
 down_revision = 'a304cc6f39c5'
 branch_labels = None
 depends_on = None
