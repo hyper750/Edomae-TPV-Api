@@ -1,7 +1,6 @@
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
 from logic.command import parse_object_command, parse_query_command
-from logic.model_filter.date_filter import filter_by_date_range
 from logic.model_filter.paginate import paginate_queryset
 from models import Command, CommandSchema
 from sqlalchemy import desc
@@ -63,11 +62,10 @@ class CommandsResource(Resource):
         )
 
         # Filter by creation date
-        # commands = filter_by_date_range(commands, )
-        # if start_date:
-        #     commands = commands.filter(Command.creation_date > start_date)
-        # if end_date:
-        #     commands = commands.filter(Command.creation_date < end_date)
+        if start_date:
+            commands = commands.filter(Command.creation_date > start_date)
+        if end_date:
+            commands = commands.filter(Command.creation_date < end_date)
 
         # Paginate queryset
         commands = paginate_queryset(commands, page_size, page_num)
