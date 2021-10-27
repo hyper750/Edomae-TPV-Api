@@ -13,6 +13,8 @@ class Meal(DB.Model, CRUDModel):
 
     id = Column(BigInteger, primary_key=True)
 
+    # TODO: Add order to show on the display
+
     # Meal enabled or not
     enabled = Column(Boolean, nullable=False, default=expression.true())
 
