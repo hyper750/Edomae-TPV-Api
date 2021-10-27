@@ -3,6 +3,7 @@ flask_jwt_extended
 sqlalchemy
 psycopg2-binary
 flask_sqlalchemy
+marshmallow-sqlalchemy
 flask_marshmallow
 flask_migrate
 arrow
