@@ -41,7 +41,7 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Root static dir
 STATIC_DIR = os.path.join(PROJECT_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 # Meal imatges folder
 MEAL_IMATGES_DIR = os.path.join(STATIC_DIR, 'meal')
