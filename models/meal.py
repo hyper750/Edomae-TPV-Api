@@ -43,9 +43,7 @@ class Meal(DB.Model, CRUDModel):
 
     def save(self):
         # Save imatge to dir
-        save_file_field(self.imatge, MEAL_IMATGES_DIR)
-        # Save imatge filename only
-        self.imatge = self.imatge.filename
+        self.imatge = save_file_field(self.imatge, MEAL_IMATGES_DIR)
         # Save instance
         return super().save()
 

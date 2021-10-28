@@ -27,9 +27,7 @@ class MealCategory(DB.Model, CRUDModel):
 
     def save(self):
         # Save file to static folder
-        save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
-        # Save imatge filename to db
-        self.imatge = self.imatge.filename
+        self.imatge = save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
         # Save instance
         return super().save()
 
