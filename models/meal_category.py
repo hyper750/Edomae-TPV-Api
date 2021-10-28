@@ -1,7 +1,7 @@
 from adapter.db import DB, MA
 from serialization import FileSerialization
 from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
-from sqlalchemy import BigInteger, Column, String
+from sqlalchemy import BigInteger, Column, String, Integer
 from utils.file_field import save_file_field
 
 from .crud_model import CRUDModel
@@ -18,7 +18,12 @@ class MealCategory(DB.Model, CRUDModel):
     # Category imatge
     imatge = Column(String(250), nullable=False)
 
-    # TODO: Add order to show on the display
+    # Order to show on the display, Eg:
+    # 1. Entrantes
+    # 2. Sushi
+    # 3. Platos calientes
+    # 4. Postres
+    order = Column(Integer, nullable=False, unique=True)
 
     def save(self):
         # Save file to static folder
@@ -39,5 +44,6 @@ class MealCategorySchema(MA.Schema):
         fields = (
             'id',
             'name',
-            'imatge'
+            'imatge',
+            'order'
         )
