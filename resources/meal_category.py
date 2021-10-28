@@ -55,5 +55,5 @@ class MealCategoriesResource(Resource):
     def get(self):
         categories = MealCategory.query.filter_by(
             **parse_query_meal_category()
-        ).order(MealCategory.order)
+        ).order_by(MealCategory.order)
         return MealCategorySchema(many=True).dump(categories)
