@@ -1,5 +1,5 @@
 from adapter.db import DB, MA
-from sqlalchemy import BigInteger, Boolean, Column, DateTime, String
+from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, String
 from sqlalchemy.sql import expression
 from sqlalchemy.sql.schema import ForeignKey
 from utils.function_database import UTCNow
@@ -37,6 +37,18 @@ class Command(DB.Model, CRUDModel):
         nullable=True
     )
 
+    # Discount of the whole meal
+    discount = Column(
+        Float(precision=2),
+        nullable=True
+    )
+
+    # Extras
+    extra = Column(
+        String(length=256),
+        nullable=True
+    )
+
     # If the command is a home delivery
     is_home_delivery = Column(
         Boolean,
@@ -52,6 +64,7 @@ class Command(DB.Model, CRUDModel):
 
     # TODO: Add tables
 
+
 class CommandSchema(MA.Schema):
     class Meta:
         fields = (
@@ -61,5 +74,7 @@ class CommandSchema(MA.Schema):
             'paid',
             'payment_method',
             'is_home_delivery',
-            'delivery_address'
+            'delivery_address',
+            'discount',
+            'extra',
         )
