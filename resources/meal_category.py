@@ -4,8 +4,7 @@ from logic.meal_category import (
     parse_object_meal_category,
     parse_query_meal_category
 )
-from models import MealCategory, MealSchema
-from models.meal_category import MealCategorySchema
+from models import MealCategory, MealCategorySchema
 
 
 class MealCategoryResource(Resource):
@@ -17,7 +16,7 @@ class MealCategoryResource(Resource):
         if not category:
             return '', 404
 
-        return MealSchema().dump(category)
+        return MealCategorySchema().dump(category)
 
     def delete(self, id: int):
         category = MealCategory.query.get(id)
