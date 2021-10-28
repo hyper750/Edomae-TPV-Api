@@ -12,6 +12,8 @@ class MealCategory(DB.Model, CRUDModel):
 
     id = Column(BigInteger, primary_key=True)
 
+    # TODO: Add enabled field
+
     # Meal category name, Eg: Entrantes, Postre, Bebida
     name = Column(String(250), unique=True, nullable=False)
 
@@ -23,7 +25,7 @@ class MealCategory(DB.Model, CRUDModel):
     # 2. Sushi
     # 3. Platos calientes
     # 4. Postres
-    order = Column(Integer, nullable=False, unique=True)
+    order = Column(Integer, nullable=False)
 
     def save(self):
         # Save file to static folder

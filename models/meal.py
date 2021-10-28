@@ -39,7 +39,7 @@ class Meal(DB.Model, CRUDModel):
     imatge = Column(String(250), nullable=False)
 
     # Order to show on the display
-    order = Column(Integer, nullable=False, unique=True)
+    order = Column(Integer, nullable=False)
 
     def save(self):
         # Save imatge to dir
