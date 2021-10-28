@@ -10,7 +10,7 @@ def save_file_field(file_field: FileStorage, dir: str) -> str:
     if not os.path.exists(dir):
         os.mkdir(dir)
 
-    # TODO: Create md5 hash from filename and timestamp for example, to avoid duplicates
+    # Avoid duplicates, in case the same filename is a different imatge
     # Split filename and fileformat
     fileformat = file_field.filename.rsplit('.', maxsplit=1)[-1]
 
