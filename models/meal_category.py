@@ -1,7 +1,7 @@
 from adapter.db import DB, MA
 from serialization import FileSerialization
 from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
-from sqlalchemy import BigInteger, Column, String, Integer
+from sqlalchemy import BigInteger, Column, Integer, String
 from utils.file_field import save_file_field
 
 from .crud_model import CRUDModel
