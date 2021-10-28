@@ -1,7 +1,10 @@
 from adapter.db import DB, MA
 from serialization import FileSerialization
 from settings import MEAL_IMATGES_DIR, MEAL_IMATGES_URL
-from sqlalchemy import BigInteger, Boolean, Column, Float, ForeignKey, String
+from sqlalchemy import (
+    BigInteger, Boolean, Column, Float, ForeignKey,
+    Integer, String
+)
 from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
 
@@ -12,8 +15,6 @@ class Meal(DB.Model, CRUDModel):
     __tablename__ = 'meal'
 
     id = Column(BigInteger, primary_key=True)
-
-    # TODO: Add order to show on the display
 
     # Meal enabled or not
     enabled = Column(Boolean, nullable=False, default=expression.true())
@@ -36,6 +37,9 @@ class Meal(DB.Model, CRUDModel):
 
     # Meal imatge path
     imatge = Column(String(250), nullable=False)
+
+    # Order to show on the display
+    order = Column(Integer, nullable=False, unique=True)
 
     def save(self):
         # Save imatge to dir
@@ -60,5 +64,6 @@ class MealSchema(MA.Schema):
             'category',
             'description',
             'price',
-            'imatge'
+            'imatge',
+            'order'
         )

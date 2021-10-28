@@ -13,6 +13,7 @@ def parse_object_meal() -> dict:
     parser = parser.add_argument(
         'imatge', required=True, type=FileStorage, location='files'
     )
+    parser = parser.add_argument('order', required=True, type=int)
 
     return parser.parse_args()
 
@@ -28,5 +29,6 @@ def parse_query_meal() -> dict:
     parser = parser.add_argument(
         'imatge', type=FileStorage, location='files', store_missing=False
     )
+    parser = parser.add_argument('order', type=int, store_missing=False)
 
     return parser.parse_args()
