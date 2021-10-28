@@ -6,7 +6,6 @@ from logic.meal_category import (
 )
 from models import MealCategory, MealSchema
 from models.meal_category import MealCategorySchema
-from sqlalchemy import desc
 
 
 class MealCategoryResource(Resource):
@@ -56,5 +55,5 @@ class MealCategoriesResource(Resource):
     def get(self):
         categories = MealCategory.query.filter_by(
             **parse_query_meal_category()
-        ).order(desc(MealCategory.order))
+        ).order(MealCategory.order)
         return MealCategorySchema(many=True).dump(categories)

@@ -42,7 +42,7 @@ class MealsResource(Resource):
     def get(self):
         meals = Meal.query.filter_by(
             **parse_query_meal()
-        )
+        ).order_by(Meal.order)
         return MealSchema(many=True).dump(meals)
 
     def post(self):
