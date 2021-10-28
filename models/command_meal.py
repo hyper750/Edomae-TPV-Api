@@ -1,5 +1,5 @@
 from adapter.db import DB, MA
-from sqlalchemy import BigInteger, Column, ForeignKey, Integer, String
+from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, String
 
 from .crud_model import CRUDModel
 
@@ -33,6 +33,12 @@ class CommandMeal(DB.Model, CRUDModel):
     # Extra field, for example 'kebab sin cebolla' hahaha
     extra = Column(String, nullable=True)
 
+    # Discount of a single command meal
+    discount = Column(
+        Float(precision=2),
+        nullable=True
+    )
+
 
 class CommandMealSchema(MA.Schema):
     class Meta:
@@ -41,5 +47,6 @@ class CommandMealSchema(MA.Schema):
             'command',
             'meal',
             'number',
-            'extra'
+            'extra',
+            'discount'
         )
