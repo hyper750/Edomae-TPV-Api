@@ -31,7 +31,7 @@ class CommandMeal(DB.Model, CRUDModel):
     )
 
     # Extra field, for example 'kebab sin cebolla' hahaha
-    extra = Column(String, nullable=True)
+    extra = Column(String(length=256), nullable=True)
 
     # Discount of a single command meal
     discount = Column(
