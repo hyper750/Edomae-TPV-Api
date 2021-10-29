@@ -5,6 +5,7 @@ from werkzeug.datastructures import FileStorage
 def parse_object_meal_category() -> dict:
     parser = reqparse.RequestParser()
 
+    parser.add_argument('enabled', type=bool)
     parser = parser.add_argument('name', required=True, type=str)
     parser = parser.add_argument(
         'imatge', type=FileStorage, location='files', required=True
@@ -17,6 +18,7 @@ def parse_object_meal_category() -> dict:
 def parse_query_meal_category() -> dict:
     parser = reqparse.RequestParser()
 
+    parser.add_argument('enabled', type=bool, store_missing=False)
     parser = parser.add_argument('name', type=str, store_missing=False)
     parser = parser.add_argument(
         'imatge', type=FileStorage, location='files', store_missing=False

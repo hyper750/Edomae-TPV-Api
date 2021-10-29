@@ -1,7 +1,8 @@
 from adapter.db import DB, MA
 from serialization import FileSerialization
 from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
-from sqlalchemy import BigInteger, Column, Integer, String
+from sqlalchemy import BigInteger, Boolean, Column, Integer, String
+from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
 
 from .crud_model import CRUDModel
@@ -12,7 +13,8 @@ class MealCategory(DB.Model, CRUDModel):
 
     id = Column(BigInteger, primary_key=True)
 
-    # TODO: Add enabled field
+    # If the meal category is enabled or not
+    enabled = Column(Boolean, nullable=False, default=expression.true())
 
     # Meal category name, Eg: Entrantes, Postre, Bebida
     name = Column(String(250), unique=True, nullable=False)
@@ -43,6 +45,7 @@ class MealCategorySchema(MA.Schema):
     class Meta:
         fields = (
             'id',
+            'enabled',
             'name',
             'imatge',
             'order'
