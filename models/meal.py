@@ -36,7 +36,6 @@ class Meal(DB.Model, CRUDModel):
     )
 
     # Meal imatge path
-    # TODO: Add volume for static files
     imatge = Column(String(250), nullable=False)
 
     # Order to show on the display
