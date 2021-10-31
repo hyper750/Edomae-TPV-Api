@@ -10,6 +10,9 @@ def parse_object_command() -> dict:
     parser = parser.add_argument('delivery_address', type=str, store_missing=False)
     parser = parser.add_argument('extra', type=str, store_missing=False)
     parser = parser.add_argument('discount', type=float, store_missing=False)
+    parser = parser.add_argument('table', type=int, store_missing=False)
+    parser = parser.add_argument('table_name', type=str, store_missing=False)
+
 
     return parser.parse_args()
 
@@ -22,11 +25,17 @@ def parse_query_command() -> dict:
 
     parser = parser.add_argument('creation_date__gte', type=inputs.datetime_from_iso8601, store_missing=False)
     parser = parser.add_argument('creation_date__lte', type=inputs.datetime_from_iso8601, store_missing=False)
+
     parser = parser.add_argument('user', type=int, store_missing=False)
+
     parser = parser.add_argument('paid', type=bool, store_missing=False)
     parser = parser.add_argument('payment_method', type=int, store_missing=False)
+
     parser = parser.add_argument('is_home_delivery', type=bool, store_missing=False)
     parser = parser.add_argument('delivery_address', type=str, store_missing=False)
+    parser = parser.add_argument('table', type=int, store_missing=False)
+    parser = parser.add_argument('table_name', type=str, store_missing=False)
+
     parser = parser.add_argument('discount', type=float, store_missing=False)
 
     return parser.parse_args()

@@ -62,7 +62,20 @@ class Command(DB.Model, CRUDModel):
         nullable=True
     )
 
-    # TODO: Add tables
+    # Assign command table
+    table = Column(
+        BigInteger,
+        ForeignKey('table.id', ondelete='SET NULL'),
+        # May be for delivery
+        nullable=True
+    )
+
+    # Be able to insert a table name, Eg: 'Gul' table
+    table_name = Column(
+        String(length=256),
+        # May be for delivery
+        nullable=True
+    )
 
 
 class CommandSchema(MA.Schema):
@@ -75,6 +88,8 @@ class CommandSchema(MA.Schema):
             'payment_method',
             'is_home_delivery',
             'delivery_address',
+            'table',
+            'table_name',
             'discount',
             'extra',
         )
