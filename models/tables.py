@@ -1,7 +1,7 @@
 from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Column, Integer
 
-
+# TODO: Add resource
 class Table(DB.Model):
     __tablename__ = 'table'
 
@@ -9,12 +9,12 @@ class Table(DB.Model):
     id = Column(BigInteger, primary_key=True)
 
     # Table number
-    table_number = Column(Integer, nullable=False, unique=True)
+    number = Column(Integer, nullable=False, unique=True)
 
 
 class TableSchema(MA.Schema):
     class Meta:
         fields = (
             'id',
-            'table_number',
+            'number',
         )
