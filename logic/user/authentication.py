@@ -16,6 +16,7 @@ def authenticate_user(username: str, password: str) -> models.User:
         ITERATIONS
     ).hex()
     user = models.User.query.filter_by(
+        enabled=True,
         username=username, password=hashed_password
     ).first()
     return user

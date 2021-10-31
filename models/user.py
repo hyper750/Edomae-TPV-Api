@@ -2,11 +2,18 @@ from adapter.db import DB, MA
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
 
-
+# TODO: Add resource to be able to modify your user and if is admin the other users
 class User(DB.Model):
     __tablename__ = 'user'
 
     id = Column(BigInteger, primary_key=True)
+
+    # Enabled
+    enabled = Column(
+        Boolean,
+        nullable=False,
+        server_default=expression.false()
+    )
 
     # Username, eg: hyper75
     username = Column(String(length=320), unique=True, nullable=False)
@@ -26,6 +33,7 @@ class UserSchema(MA.Schema):
         # Fields to serialize
         fields = (
             'id',
+            'enabled',
             'username',
             'email',
             'admin'
