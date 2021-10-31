@@ -1,4 +1,4 @@
-from adapter.db import DB, MA
+from adapter.db import DB
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
 

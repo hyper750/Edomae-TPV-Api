@@ -1,10 +1,11 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from models import PaymentMethod, PaymentMethodSchema
 from logic.payment_method import (
     parse_object_payment_method,
-    parse_query_payment_method,
+    parse_query_payment_method
 )
+from models import PaymentMethod
+from serialization import PaymentMethodSchema
 
 
 class PaymentMethodResource(Resource):

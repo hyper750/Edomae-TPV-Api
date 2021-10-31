@@ -1,4 +1,4 @@
-from adapter.db import DB, MA
+from adapter.db import DB
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
 
@@ -19,12 +19,3 @@ class PaymentMethod(DB.Model, CRUDModel):
         nullable=False,
         unique=True
     )
-
-
-class PaymentMethodSchema(MA.Schema):
-    class Meta:
-        fields = (
-            'id',
-            'enabled',
-            'name'
-        )

@@ -1,4 +1,4 @@
-from adapter.db import DB, MA
+from adapter.db import DB
 from sqlalchemy import BigInteger, Column, Integer
 
 # TODO: Add resource
