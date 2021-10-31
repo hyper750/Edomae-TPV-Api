@@ -3,6 +3,7 @@ from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
 
 # TODO: Add resource to be able to modify your user and if is admin the other users
+# TODO: Be able to add users only for admins
 class User(DB.Model):
     __tablename__ = 'user'
 
