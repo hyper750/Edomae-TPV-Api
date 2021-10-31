@@ -27,15 +27,3 @@ class User(DB.Model):
 
     # Is administrator
     admin = Column(Boolean, nullable=False, server_default=expression.false())
-
-
-class UserSchema(MA.Schema):
-    class Meta:
-        # Fields to serialize
-        fields = (
-            'id',
-            'enabled',
-            'username',
-            'email',
-            'admin'
-        )
