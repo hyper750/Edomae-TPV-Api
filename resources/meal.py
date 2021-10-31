@@ -1,7 +1,8 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from logic.meal import parse_object_meal, parse_query_meal
-from models import Meal, MealSchema
+from models import Meal
+from serialization import MealSchema
 
 
 class MealResource(Resource):
