@@ -10,11 +10,3 @@ class Table(DB.Model):
 
     # Table number
     number = Column(Integer, nullable=False, unique=True)
-
-
-class TableSchema(MA.Schema):
-    class Meta:
-        fields = (
-            'id',
-            'number',
-        )
