@@ -1,6 +1,8 @@
+from parser import parse_login
+
 from flask_jwt_extended import create_access_token, get_jwt, jwt_required
 from flask_restful import Resource
-from logic.user import authenticate_user, parse_login, revoke_access_token
+from logic.user import authenticate_user, revoke_access_token
 
 
 class Auth(Resource):
