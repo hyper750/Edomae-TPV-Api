@@ -82,4 +82,4 @@ class CommandsResource(Resource):
             **parse_object_command()
         )
         command.save()
-        return CommandSchema().dump(command)
+        return CommandSchema().dump(command), 201

@@ -51,4 +51,4 @@ class PaymentMethodsResource(Resource):
             **parse_object_payment_method()
         )
         payment_method.save()
-        return PaymentMethodSchema().dump(payment_method)
+        return PaymentMethodSchema().dump(payment_method), 201

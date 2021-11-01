@@ -49,7 +49,7 @@ class TablesResources(Resource):
 
         table.save()
 
-        return TableSchema().dump(table)
+        return TableSchema().dump(table), 201
 
     def get(self):
         tables = Table.query.filter_by(
