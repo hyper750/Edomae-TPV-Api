@@ -1,6 +1,6 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from logic.meal_category import (
+from parser import (
     parse_object_meal_category,
     parse_query_meal_category
 )
