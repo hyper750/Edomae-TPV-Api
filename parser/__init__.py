@@ -9,3 +9,4 @@ from .payment_method import (
     parse_object_payment_method,
     parse_query_payment_method
 )
+from .table import parse_object_table, parse_query_table
