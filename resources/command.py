@@ -1,6 +1,6 @@
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
-from logic.command import parse_object_command, parse_query_command
+from parser import parse_object_command, parse_query_command
 from logic.model_filter.paginate import paginate_queryset
 from models import Command
 from serialization import CommandSchema
