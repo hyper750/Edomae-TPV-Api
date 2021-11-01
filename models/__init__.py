@@ -1,4 +1,4 @@
-from .command import Command, CommandSchema
+from .command import Command
 from .command_meal import CommandMeal, CommandMealSchema
 from .meal import Meal
 from .meal_category import MealCategory

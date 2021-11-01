@@ -1,4 +1,4 @@
-from adapter.db import DB, MA
+from adapter.db import DB
 from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, String
 from sqlalchemy.sql import expression
 from sqlalchemy.sql.schema import ForeignKey
@@ -76,20 +76,3 @@ class Command(DB.Model, CRUDModel):
         # May be for delivery
         nullable=True
     )
-
-
-class CommandSchema(MA.Schema):
-    class Meta:
-        fields = (
-            'id',
-            'user',
-            'creation_date',
-            'paid',
-            'payment_method',
-            'is_home_delivery',
-            'delivery_address',
-            'table',
-            'table_name',
-            'discount',
-            'extra',
-        )
