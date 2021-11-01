@@ -4,7 +4,6 @@ from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, String
 from .crud_model import CRUDModel
 
 
-# TODO: Implement resource
 class CommandMeal(DB.Model, CRUDModel):
     __tablename__ = 'command_meal'
 

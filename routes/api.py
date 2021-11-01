@@ -4,7 +4,8 @@ from resources import (
     MealResource, MealsResource,
     PaymentMethodsResource, PaymentMethodResource,
     CommandResource, CommandsResource,
-    TableResource, TablesResources
+    TableResource, TablesResources,
+    CommandMealResource, CommandMealsResource
 )
 
 API_ROUTES = Api()
@@ -29,6 +30,8 @@ API_ROUTES.add_resource(CommandResource, '/command/<int:id>')
 API_ROUTES.add_resource(CommandsResource, '/command')
 
 # Meal per command
+API_ROUTES.add_resource(CommandMealResource, '/commandMeal/<int:id>')
+API_ROUTES.add_resource(CommandMealsResource, '/commandMeal')
 
 # Table
 API_ROUTES.add_resource(TableResource, '/table/<int:id>')
