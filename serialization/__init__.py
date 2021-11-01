@@ -1,4 +1,5 @@
 from .command import CommandSchema
+from .command_meal import CommandMealSchema
 from .file_serialization import FileSerialization
 from .meal import MealSchema
 from .meal_category import MealCategorySchema

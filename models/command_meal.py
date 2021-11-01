@@ -1,4 +1,4 @@
-from adapter.db import DB, MA
+from adapter.db import DB
 from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, String
 
 from .crud_model import CRUDModel
@@ -38,15 +38,3 @@ class CommandMeal(DB.Model, CRUDModel):
         Float(precision=2),
         nullable=True
     )
-
-
-class CommandMealSchema(MA.Schema):
-    class Meta:
-        fields = (
-            'id',
-            'command',
-            'meal',
-            'number',
-            'extra',
-            'discount'
-        )
