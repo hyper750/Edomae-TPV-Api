@@ -1,8 +1,10 @@
 from adapter.db import DB
 from sqlalchemy import BigInteger, Column, Integer
 
-# TODO: Add resource
-class Table(DB.Model):
+from .crud_model import CRUDModel
+
+
+class Table(DB.Model, CRUDModel):
     __tablename__ = 'table'
 
     # Id of the table

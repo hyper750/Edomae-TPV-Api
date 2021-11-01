@@ -8,13 +8,23 @@ class TableResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self, id: int):
-        pass
+        table = Table.query.get(id)
+
+        if not table:
+            return '', 404
+        
+        return TableSchema().dump(table)
 
     def put(self, id: int):
         pass
 
     def delete(self, id: int):
-        pass
+        table = Table.query.get(id)
+
+        if table:
+            table.delete()
+        
+        return '', 204
 
 
 class TablesResources(Resource):
