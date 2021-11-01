@@ -4,7 +4,8 @@ from logic.meal_category import (
     parse_object_meal_category,
     parse_query_meal_category
 )
-from models import MealCategory, MealCategorySchema
+from models import MealCategory
+from serialization import MealCategorySchema
 
 
 class MealCategoryResource(Resource):

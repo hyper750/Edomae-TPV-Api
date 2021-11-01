@@ -1,6 +1,5 @@
-from adapter.db import DB, MA
-from serialization import FileSerialization
-from settings import MEAL_CATEGORY_IMATGES_DIR, MEAL_CATEGORY_URL
+from adapter.db import DB
+from settings import MEAL_CATEGORY_IMATGES_DIR
 from sqlalchemy import BigInteger, Boolean, Column, Integer, String
 from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
@@ -34,19 +33,3 @@ class MealCategory(DB.Model, CRUDModel):
         self.imatge = save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
         # Save instance
         return super().save()
-
-
-class MealCategorySchema(MA.Schema):
-    imatge = FileSerialization(
-        upload_url=MEAL_CATEGORY_URL,
-        attribute='imatge'
-    )
-
-    class Meta:
-        fields = (
-            'id',
-            'enabled',
-            'name',
-            'imatge',
-            'order'
-        )
