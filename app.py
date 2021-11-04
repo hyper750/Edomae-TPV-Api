@@ -4,12 +4,16 @@ from flask_migrate import Migrate
 from adapter.db import DB, MA
 from logic.user import JWT
 from routes import API_ROUTES
-from settings import FLASK_CONFIG
+from settings import FLASK_CONFIG, CORS_SETTINGS
+from flask_cors import CORS
 
 app = Flask('Commander')
 
 # Configure app
 app.config.update(FLASK_CONFIG)
+
+# Configure cross origin
+CORS(app, resources=CORS_SETTINGS)
 
 # Initialize database
 DB.init_app(app)

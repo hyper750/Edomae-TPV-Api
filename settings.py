@@ -1,6 +1,8 @@
 import os
 from datetime import timedelta
 
+DEBUG = os.environ.get('DEBUG') in ['True', '1', 't']
+
 HASH_NAME = 'sha512'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ITERATIONS = 5000
@@ -10,7 +12,7 @@ JTI_EXPIRATION = timedelta(days=1)
 
 FLASK_CONFIG = {
     # Production mode
-    'DEBUG': os.environ.get('DEBUG') in ['True', '1', 't'],
+    'DEBUG': DEBUG,
 
     # Secret key
     'SECRET_KEY': SECRET_KEY,
@@ -30,6 +32,14 @@ FLASK_CONFIG = {
     'PROPAGATE_EXCEPTIONS': True
 }
 
+# Cors settings
+CORS_ALLOW_ORIGIN = 'edomae.es'
+if DEBUG:
+    CORS_ALLOW_ORIGIN = '*'
+
+CORS_SETTINGS = {
+    r'/*': {'origins': CORS_ALLOW_ORIGIN}
+}
 
 # Redis settings
 REDIS_HOST = os.environ.get('REDIS_HOST', '127.0.0.1')
