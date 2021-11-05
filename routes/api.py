@@ -1,6 +1,7 @@
 from flask_restful import Api
 from resources import (
-    Auth, MealCategoriesResource, MealCategoryResource,
+    Auth, UserResource,
+    MealCategoriesResource, MealCategoryResource,
     MealResource, MealsResource,
     PaymentMethodsResource, PaymentMethodResource,
     CommandResource, CommandsResource,
@@ -12,6 +13,9 @@ API_ROUTES = Api()
 
 # Auth route
 API_ROUTES.add_resource(Auth, '/auth')
+
+# User route
+API_ROUTES.add_resource(UserResource, '/user')
 
 # Meal routes
 API_ROUTES.add_resource(MealResource, '/meal/<int:id>')

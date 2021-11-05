@@ -4,7 +4,7 @@ from models import User
 from serialization import UserSchema
 
 
-class User(Resource):
+class UserResource(Resource):
     method_decorators = (jwt_required(),)
 
     # TODO: Admin can modify users, for example disable a user
