@@ -3,6 +3,7 @@ from settings import MEAL_CATEGORY_IMATGES_DIR
 from sqlalchemy import BigInteger, Boolean, Column, Integer, String
 from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
+from werkzeug.datastructures import FileStorage
 
 from .crud_model import CRUDModel
 
@@ -29,7 +30,8 @@ class MealCategory(DB.Model, CRUDModel):
     order = Column(Integer, nullable=False)
 
     def save(self):
-        # Save file to static folder
-        self.imatge = save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
+        if isinstance(self.imatge, FileStorage):
+            # Save file to static folder
+            self.imatge = save_file_field(self.imatge, MEAL_CATEGORY_IMATGES_DIR)
         # Save instance
         return super().save()
