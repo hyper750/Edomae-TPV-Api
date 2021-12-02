@@ -33,7 +33,7 @@ FLASK_CONFIG = {
 }
 
 # Cors settings
-CORS_ALLOW_ORIGIN = 'edomae.es'
+CORS_ALLOW_ORIGIN = 'https://[\w\-]+.edomae.es'
 if DEBUG:
     CORS_ALLOW_ORIGIN = '*'
 
