@@ -1,6 +1,9 @@
 from adapter.db import DB
+from settings import PAYMENT_METHOD_IMATGES_DIR
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
+from utils.file_field import save_file_field
+from werkzeug.datastructures import FileStorage
 
 from .crud_model import CRUDModel
 
@@ -19,3 +22,13 @@ class PaymentMethod(DB.Model, CRUDModel):
         nullable=False,
         unique=True
     )
+
+    # Imatge filename path
+    image = Column(String(250), nullable=False)
+
+    def save(self):
+        if isinstance(self.imatge, FileStorage):
+            self.imatge = save_file_field(
+                self.imatge, PAYMENT_METHOD_IMATGES_DIR
+            )
+        return super().save()

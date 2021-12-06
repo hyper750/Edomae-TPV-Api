@@ -60,3 +60,7 @@ MEAL_IMATGES_URL = f'{STATIC_URL}meal'
 # Meal category imatges folder
 MEAL_CATEGORY_IMATGES_DIR = os.path.join(STATIC_DIR, 'mealCategory')
 MEAL_CATEGORY_URL = f'{STATIC_URL}mealCategory'
+
+# Payment methods imatges folder
+PAYMENT_METHOD_IMATGES_DIR = os.path.join(STATIC_DIR, 'paymentMethod')
+PAYMENT_METHOD_IMATGES_URL = f'{STATIC_URL}/paymentMethod'
