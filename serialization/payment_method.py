@@ -5,9 +5,9 @@ from .file_serialization import FileSerialization
 
 
 class PaymentMethodSchema(MA.Schema):
-    imatge = FileSerialization(
+    image = FileSerialization(
         upload_url=PAYMENT_METHOD_IMATGES_URL,
-        attribute='imatge'
+        attribute='image'
     )
 
     class Meta:
@@ -15,5 +15,5 @@ class PaymentMethodSchema(MA.Schema):
             'id',
             'enabled',
             'name',
-            'imatge'
+            'image'
         )

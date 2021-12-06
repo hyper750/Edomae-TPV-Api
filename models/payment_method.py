@@ -27,8 +27,8 @@ class PaymentMethod(DB.Model, CRUDModel):
     image = Column(String(250), nullable=False)
 
     def save(self):
-        if isinstance(self.imatge, FileStorage):
-            self.imatge = save_file_field(
-                self.imatge, PAYMENT_METHOD_IMATGES_DIR
+        if isinstance(self.image, FileStorage):
+            self.image = save_file_field(
+                self.image, PAYMENT_METHOD_IMATGES_DIR
             )
         return super().save()
