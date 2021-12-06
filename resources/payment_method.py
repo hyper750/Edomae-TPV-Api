@@ -43,7 +43,7 @@ class PaymentMethodsResource(Resource):
     def get(self):
         payment_methods = PaymentMethod.query.filter_by(
             **parse_query_payment_method()
-        )
+        ).order_by(PaymentMethod.name)
         return PaymentMethodSchema(many=True).dump(payment_methods)
 
     def post(self):
