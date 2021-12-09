@@ -1,5 +1,5 @@
 from adapter.db import DB
-from sqlalchemy import BigInteger, Column, ForeignKey, Integer, Float
+from sqlalchemy import BigInteger, Column, ForeignKey, Integer, Float, UniqueConstraint
 
 from .crud_model import CRUDModel
 
@@ -28,4 +28,8 @@ class Table(DB.Model, CRUDModel):
     )
 
     # Table number
-    number = Column(Integer, nullable=False, unique=True)
+    number = Column(Integer, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(local, number, name='unique_local_and_table_number')
+    )
