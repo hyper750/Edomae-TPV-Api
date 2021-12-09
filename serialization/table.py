@@ -5,6 +5,7 @@ class TableSchema(MA.Schema):
     class Meta:
         fields = (
             'id',
+            'enabled',
             'number',
             'number_of_persons',
             'local',

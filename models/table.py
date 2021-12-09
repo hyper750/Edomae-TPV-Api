@@ -1,5 +1,9 @@
 from adapter.db import DB
-from sqlalchemy import BigInteger, Column, ForeignKey, Integer, Float, UniqueConstraint
+from sqlalchemy import (
+    BigInteger, Boolean, Column, Float, ForeignKey,
+    Integer, UniqueConstraint
+)
+from sqlalchemy.sql import expression
 
 from .crud_model import CRUDModel
 
@@ -9,6 +13,9 @@ class Table(DB.Model, CRUDModel):
 
     # Id of the table
     id = Column(BigInteger, primary_key=True)
+
+    # Enable or disable table
+    enabled = Column(Boolean, nullable=False, default=expression.true())
 
     # Local reference
     local = Column(
@@ -34,5 +41,8 @@ class Table(DB.Model, CRUDModel):
     number_of_persons = Column(Integer, nullable=False)
 
     __table_args__ = (
-        UniqueConstraint('local', 'number', name='unique_local_and_table_number'),
+        UniqueConstraint(
+            'local', 'number',
+            name='unique_local_and_table_number'
+        ),
     )
