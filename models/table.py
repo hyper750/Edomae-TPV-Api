@@ -30,6 +30,9 @@ class Table(DB.Model, CRUDModel):
     # Table number
     number = Column(Integer, nullable=False)
 
+    # Number of persons
+    number_of_persons = Column(Integer, nullable=False)
+
     __table_args__ = (
         UniqueConstraint('local', 'number', name='unique_local_and_table_number'),
     )
