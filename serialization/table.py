@@ -7,4 +7,6 @@ class TableSchema(MA.Schema):
             'id',
             'number',
             'local',
+            'x_coordinates',
+            'y_coordinates',
         )
