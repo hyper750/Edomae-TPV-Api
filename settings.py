@@ -64,3 +64,7 @@ MEAL_CATEGORY_URL = f'{STATIC_URL}mealCategory'
 # Payment methods imatges folder
 PAYMENT_METHOD_IMATGES_DIR = os.path.join(STATIC_DIR, 'paymentMethod')
 PAYMENT_METHOD_IMATGES_URL = f'{STATIC_URL}/paymentMethod'
+
+# Local where the tables are assigned to
+LOCAL_IMATGES_DIR = os.path.join(STATIC_DIR, 'local')
+LOCAL_IMATGES_URL = f'{STATIC_URL}/local'
