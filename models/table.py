@@ -31,5 +31,5 @@ class Table(DB.Model, CRUDModel):
     number = Column(Integer, nullable=False)
 
     __table_args__ = (
-        UniqueConstraint(local, number, name='unique_local_and_table_number'),
+        UniqueConstraint('local', 'number', name='unique_local_and_table_number'),
     )
