@@ -6,4 +6,5 @@ class TableSchema(MA.Schema):
         fields = (
             'id',
             'number',
+            'local',
         )
