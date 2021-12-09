@@ -16,7 +16,7 @@ class Table(DB.Model, CRUDModel):
         ForeignKey('local.id', ondelete='CASCADE'),
         nullable=False
     )
-    
+
     # X coordinates to place it inside the local imatge
     x_coordinates = Column(
         Float(precision=2), nullable=False
@@ -31,5 +31,5 @@ class Table(DB.Model, CRUDModel):
     number = Column(Integer, nullable=False)
 
     __table_args__ = (
-        UniqueConstraint(local, number, name='unique_local_and_table_number')
+        UniqueConstraint(local, number, name='unique_local_and_table_number'),
     )
