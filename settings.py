@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 ITERATIONS = 5000
 
 # JTI token expiration
-JTI_EXPIRATION = timedelta(days=1)
+JTI_EXPIRATION = timedelta(days=365)
 
 FLASK_CONFIG = {
     # Production mode
