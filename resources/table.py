@@ -54,6 +54,6 @@ class TablesResources(Resource):
     def get(self):
         tables = Table.query.filter_by(
             **parse_query_table()
-        )
+        ).order_by(Table.y_coordinates, Table.x_coordinates)
 
         return TableSchema(many=True).dump(tables)
