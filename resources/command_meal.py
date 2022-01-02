@@ -2,7 +2,7 @@ from parser import parse_object_command_meal, parse_query_command_meal
 
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from models import CommandMeal
+from models import CommandMeal, Meal
 from serialization import CommandMealSchema
 
 
@@ -43,8 +43,17 @@ class CommandMealsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def post(self):
+        command_meal_params = parse_object_command_meal()
+
+        # Get meal
+        meal = Meal.query.get(command_meal_params.get('meal'))
+        # Add current price instance
+        command_meal_params.price = meal.price
+        # Compute total meal price from the discount (0-100)
+        command_meal_params.total_price = meal.price * (1 - (command_meal_params.discount / 100))
+
         command_meal = CommandMeal(
-            **parse_object_command_meal()
+            **command_meal_params
         )
 
         command_meal.save()

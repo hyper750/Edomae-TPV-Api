@@ -23,6 +23,12 @@ class CommandMeal(DB.Model, CRUDModel):
         nullable=False
     )
 
+    # Current price instance
+    price = Column(Float(precision=2), nullable=False)
+
+    # Total price from the current price and discount
+    total_price = Column(Float(precision=2), nullable=False)
+
     # Number of meals to get
     number = Column(
         Integer,

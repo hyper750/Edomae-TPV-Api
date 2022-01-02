@@ -9,5 +9,7 @@ class CommandMealSchema(MA.Schema):
             'meal',
             'number',
             'extra',
-            'discount'
+            'discount',
+            'price',
+            'total_price',
         )
