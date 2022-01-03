@@ -38,7 +38,7 @@ def generate_ticket(id: int) -> str:
         'COMMAND_IVA': 21,
         'COMMAND_IVA_PRICE': 2.1567,
         'CURRENT_DATE': 'Lunes 3 Enero 2021 21:16:12',
-        'EMPLOYEE_NAME': 'Cristian Lopez'
+        'EMPLOYEE_NAME': 'Cristian Lopez Alonso'
     }
 
     return template_content.render(**data)
