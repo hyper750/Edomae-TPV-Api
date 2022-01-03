@@ -5,7 +5,7 @@ import base64
 
 def get_edomae_logo() -> str:
     content = ''
-    with open(TICKET_COMMAND_LOGO, "r") as f:
+    with open(TICKET_COMMAND_LOGO, "rb") as f:
         content = base64.b64encode(f.read())
     return content
 
