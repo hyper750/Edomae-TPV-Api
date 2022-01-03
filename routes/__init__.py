@@ -1,2 +1,2 @@
 from .api import API_ROUTES
-from .printer_api import PRINTER_API
+from .ticket_api import TICKET_API
