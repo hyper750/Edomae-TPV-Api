@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from models import CommandMeal, Meal
 from serialization import CommandMealSchema
-
+from utils.math import calculate_discount
 
 class CommandMealResource(Resource):
     method_decorators = (jwt_required(),)
@@ -50,7 +50,7 @@ class CommandMealsResource(Resource):
         # Add current price instance
         command_meal_params.price = meal.price
         # Compute total meal price from the discount (0-100)
-        command_meal_params.total_price = meal.price * (1 - (command_meal_params.discount / 100))
+        command_meal_params.total_price = calculate_discount(meal.price, command_meal_params.discount)
 
         command_meal = CommandMeal(
             **command_meal_params
