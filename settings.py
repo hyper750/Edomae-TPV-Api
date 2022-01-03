@@ -74,6 +74,7 @@ TEMPLATE_DIR = os.path.join(
     'ticket', 'template',
 )
 # Template of the ticket command
+TICKET_COMMAND_TEMPLATE_NAME = 'command.html'
 TICKET_COMMAND_TEMPLATE = os.path.join(
-    TEMPLATE_DIR, 'command.html'
+    TEMPLATE_DIR, TICKET_COMMAND_TEMPLATE_NAME
 )
