@@ -16,7 +16,29 @@ def generate_ticket(id: int) -> str:
     template_content = env.get_template(TICKET_COMMAND_TEMPLATE_NAME)
 
     data = {
-        'EDOMAE_LOGO_BASE64': get_edomae_logo()
+        'EDOMAE_LOGO_BASE64': get_edomae_logo(),
+        'COMMAND_ID': 46,
+        'TABLE_NUMBER': 2,
+        'COMMAND_MEALS': [
+            {
+                'number': 1,
+                'name': 'Gyozas de pollo',
+                'price': 6.5,
+                'total_price': 6.5
+            },
+            {
+                'number': 1,
+                'name': 'Gyozas de langostino',
+                'price': 6.5,
+                'total_price': 6.5
+            }
+        ],
+        'COMMAND_TOTAL_PRICE': 13,
+        'COMMAND_TOTAL_PRICE_WITHOUT_IVA': 10.27,
+        'COMMAND_IVA': 21,
+        'COMMAND_IVA_PRICE': 2.1567,
+        'CURRENT_DATE': 'Lunes 3 Enero 2021 21:16:12',
+        'EMPLOYEE_NAME': 'Cristian Lopez'
     }
 
     return template_content.render(**data)
