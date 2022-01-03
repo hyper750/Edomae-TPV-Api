@@ -3,7 +3,7 @@ from flask_migrate import Migrate
 
 from adapter.db import DB, MA
 from logic.user import JWT
-from routes import API_ROUTES, PRINTER_API
+from routes import API_ROUTES, TICKET_API
 from settings import FLASK_CONFIG, CORS_SETTINGS
 from flask_cors import CORS
 
@@ -30,8 +30,8 @@ JWT.init_app(app)
 # Initialize api routes
 API_ROUTES.init_app(app)
 
-# Initialize printer routes
-PRINTER_API.init_app(app)
+# Initialize ticket routes
+TICKET_API.init_app(app)
 
 if __name__ == '__main__':
     app.run()
