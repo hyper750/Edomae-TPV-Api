@@ -50,7 +50,7 @@ class CommandMealsResource(Resource):
         # Add current price instance
         command_meal_params.price = meal.price
         # Compute total meal price from the discount (0-100)
-        command_meal_params.total_price = calculate_discount(meal.price, command_meal_params.discount)
+        command_meal_params.total_price = command_meal_params.number * calculate_discount(meal.price, command_meal_params.discount)
 
         command_meal = CommandMeal(
             **command_meal_params
