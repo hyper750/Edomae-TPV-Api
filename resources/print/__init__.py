@@ -1,0 +1,1 @@
+from .printer_command import PrintCommandResource
