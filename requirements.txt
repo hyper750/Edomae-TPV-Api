@@ -10,3 +10,4 @@ flask_migrate
 arrow
 pytz
 redis
+jinja2

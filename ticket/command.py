@@ -1,10 +1,12 @@
+from jinja2 import Environment, FileSystemLoader
 from settings import TICKET_COMMAND_TEMPLATE
 
 
 def generate_ticket(id: int) -> str:
-    template_content = ''
+    file_loader = FileSystemLoader()
+    env = Environment(loader=file_loader)
+    template_content = env.get_template(TICKET_COMMAND_TEMPLATE)
 
-    with open(TICKET_COMMAND_TEMPLATE, "r") as f:
-        template_content = f.read()
+    data = {}
 
-    return template_content
+    return template_content.render(**data)
