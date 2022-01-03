@@ -68,3 +68,12 @@ PAYMENT_METHOD_IMATGES_URL = f'{STATIC_URL}/paymentMethod'
 # Local where the tables are assigned to
 LOCAL_IMATGES_DIR = os.path.join(STATIC_DIR, 'local')
 LOCAL_IMATGES_URL = f'{STATIC_URL}/local'
+
+# Template folder
+TEMPLATE_DIR = os.path.join(
+    'ticket', 'template',
+)
+# Template of the ticket command
+TICKET_COMMAND_TEMPLATE = os.path.join(
+    TEMPLATE_DIR, 'command.html'
+)

@@ -1,11 +1,19 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
+from models import Command
+
+from ticket.command import generate_ticket
+
 
 class TicketCommandResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self, id: int):
+        command = Command.query.get(id)
+
+        if not command:
+            return '', 404
 
         return {
-            'html': '<html></html>'
+            'html': generate_ticket(id)
         }
