@@ -28,12 +28,15 @@ def generate_ticket(id: int) -> str:
     table: Table = Table.query.get(command.table)
     user: User = User.query.get(command.user)
 
-    total_command_price = sum(
+    total_command_price = round(sum(
         command_meal.total_price
         for command_meal in command_meals
+    ), 2)
+    iva_price = round(
+        calculate_percentage(total_command_price, IVA),
+        2
     )
-    iva_price = calculate_percentage(total_command_price, IVA)
-    price_without_iva = total_command_price - iva_price
+    price_without_iva = round(total_command_price - iva_price, 2)
 
     # 'Lunes 3 Enero 2021 21:16:12'
     current_date = arrow.now(tz=TIMEZONE).format(
