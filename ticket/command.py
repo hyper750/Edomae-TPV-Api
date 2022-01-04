@@ -1,7 +1,12 @@
-from jinja2 import Environment, FileSystemLoader
-from settings import TEMPLATE_DIR, TICKET_COMMAND_TEMPLATE_NAME, TICKET_COMMAND_LOGO, IVA
 import base64
-from models import Command, CommandMeal, Table, Meal
+
+import arrow
+from jinja2 import Environment, FileSystemLoader
+from models import Command, CommandMeal, Meal, Table, User
+from settings import (
+    IVA, TEMPLATE_DIR, TICKET_COMMAND_LOGO,
+    TICKET_COMMAND_TEMPLATE_NAME, TIMEZONE
+)
 from utils.math import calculate_percentage
 
 
@@ -16,10 +21,11 @@ def generate_ticket(id: int) -> str:
     file_loader = FileSystemLoader(TEMPLATE_DIR)
     env = Environment(loader=file_loader)
     template_content = env.get_template(TICKET_COMMAND_TEMPLATE_NAME)
-    
+
     command = Command.query.get(id)
     command_meals = CommandMeal.query.filter_by(command=id)
     table = Table.query.get(command.table)
+    user = User.query.get(command.user)
 
     total_command_price = sum(
         command_meal.total_price
@@ -27,6 +33,9 @@ def generate_ticket(id: int) -> str:
     )
     iva_price = calculate_percentage(total_command_price, IVA)
     price_without_iva = total_command_price - iva_price
+
+    # 'Lunes 3 Enero 2021 21:16:12'
+    current_date = arrow.now(tz=TIMEZONE).format('dddd DD MMMM YYYY HH:mm:ss', locale='ES')
 
     data = {
         'EDOMAE_LOGO_BASE64': get_edomae_logo(),
@@ -47,8 +56,9 @@ def generate_ticket(id: int) -> str:
         'COMMAND_TOTAL_PRICE_WITHOUT_IVA': price_without_iva,
         'COMMAND_IVA': IVA,
         'COMMAND_IVA_PRICE': iva_price,
-        'CURRENT_DATE': 'Lunes 3 Enero 2021 21:16:12',
-        'EMPLOYEE_NAME': 'Cristian Lopez Alonso'
+        'CURRENT_DATE': current_date,
+        # TODO: Replace with name and surname
+        'EMPLOYEE_NAME': user.username
     }
 
     return template_content.render(**data)
