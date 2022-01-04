@@ -9,5 +9,8 @@ class UserSchema(MA.Schema):
             'enabled',
             'username',
             'email',
-            'admin'
+            'admin',
+            'name',
+            'surname',
+            'lastname',
         )

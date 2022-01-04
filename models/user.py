@@ -19,6 +19,15 @@ class User(DB.Model):
     # Username, eg: hyper75
     username = Column(String(length=320), unique=True, nullable=False)
 
+    # Name, eg: Raul
+    name = Column(String(length=120), nullable=True)
+
+    # Surname, eg: Marques
+    surname = Column(String(length=120), nullable=True)
+
+    # Lastname, eg: Palmer
+    lastname = Column(String(length=120), nullable=True)
+
     # Email, eg: raulmarquespalmer150@gmail.com
     email = Column(String(320), unique=True, nullable=False)
 
@@ -27,3 +36,10 @@ class User(DB.Model):
 
     # Is administrator
     admin = Column(Boolean, nullable=False, server_default=expression.false())
+
+    def full_name(self) -> str:
+        return '{} {} {}'.format(
+            self.name.capitalize() if self.name else 'unknown',
+            self.surname.capitalize() if self.surname else '',
+            self.lastname.capitalize() if self.lastname else '',
+        ).strip()
