@@ -1,7 +1,8 @@
 from jinja2 import Environment, FileSystemLoader
-from settings import TEMPLATE_DIR, TICKET_COMMAND_TEMPLATE_NAME, TICKET_COMMAND_LOGO
+from settings import TEMPLATE_DIR, TICKET_COMMAND_TEMPLATE_NAME, TICKET_COMMAND_LOGO, IVA
 import base64
 from models import Command, CommandMeal, Table, Meal
+from utils.math import calculate_percentage
 
 
 def get_edomae_logo() -> str:
@@ -20,6 +21,13 @@ def generate_ticket(id: int) -> str:
     command_meals = CommandMeal.query.filter_by(command=id)
     table = Table.query.get(command.table)
 
+    total_command_price = sum(
+        command_meal.total_price
+        for command_meal in command_meals
+    )
+    iva_price = calculate_percentage(total_command_price, IVA)
+    price_without_iva = total_command_price - iva_price
+
     data = {
         'EDOMAE_LOGO_BASE64': get_edomae_logo(),
         'COMMAND_ID': command.id,
@@ -35,10 +43,10 @@ def generate_ticket(id: int) -> str:
             }
             for command_meal in command_meals
         ],
-        'COMMAND_TOTAL_PRICE': 13,
-        'COMMAND_TOTAL_PRICE_WITHOUT_IVA': 10.27,
-        'COMMAND_IVA': 21,
-        'COMMAND_IVA_PRICE': 2.1567,
+        'COMMAND_TOTAL_PRICE': total_command_price,
+        'COMMAND_TOTAL_PRICE_WITHOUT_IVA': price_without_iva,
+        'COMMAND_IVA': IVA,
+        'COMMAND_IVA_PRICE': iva_price,
         'CURRENT_DATE': 'Lunes 3 Enero 2021 21:16:12',
         'EMPLOYEE_NAME': 'Cristian Lopez Alonso'
     }
