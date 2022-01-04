@@ -21,16 +21,16 @@ def generate_ticket(id: int) -> str:
         'TABLE_NUMBER': 2,
         'COMMAND_MEALS': [
             {
-                'number': 1,
+                'number': 23,
                 'name': 'Gyozas de pollo',
-                'price': 6.5,
-                'total_price': 6.5
+                'price': 6.52,
+                'total_price': 6.52
             },
             {
-                'number': 1,
+                'number': 23,
                 'name': 'Gyozas de langostino',
-                'price': 6.5,
-                'total_price': 6.5
+                'price': 6.59,
+                'total_price': 6.59
             }
         ],
         'COMMAND_TOTAL_PRICE': 13,

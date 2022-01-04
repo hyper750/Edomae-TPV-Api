@@ -22,6 +22,7 @@
             width: 24px;
             max-width: 24px;
             word-break: break-all;
+            text-align: center;
         }
         .article-name {
             width: 80px;
@@ -29,9 +30,10 @@
             word-break: break-all;
         }
         .article-price {
-            width: 24px;
-            max-width: 24px;
+            width: 36px;
+            max-width: 36px;
             word-break: break-all;
+            text-align: center;
         }
         table {
             border-top: 1px solid black;
@@ -95,9 +97,9 @@
                     <td class="article-name">
                         {{ meal.name }}
                     </td>
-                    <th class="article-price">
+                    <td class="article-price">
                         {{ meal.price }}
-                    </th>
+                    </td>
                     <td class="article-price">
                         {{ meal.total_price }}
                     </td>
