@@ -95,7 +95,7 @@
                         {{ meal.quantity }}
                     </td>
                     <td class="article-name">
-                        {{ meal.name }}
+                        {{ meal.name }} {% if meal.extra %}/ {{ meal.extra }} {% endif %}
                     </td>
                     <td class="article-price">
                         {{ meal.price }}
