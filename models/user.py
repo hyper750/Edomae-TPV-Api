@@ -37,7 +37,7 @@ class User(DB.Model):
     # Is administrator
     admin = Column(Boolean, nullable=False, server_default=expression.false())
 
-    def full_name(self) -> str:
+    def get_full_name(self) -> str:
         return '{} {} {}'.format(
             self.name.capitalize() if self.name else 'unknown',
             self.surname.capitalize() if self.surname else '',

@@ -1,4 +1,5 @@
 import base64
+from typing import List
 
 import arrow
 from jinja2 import Environment, FileSystemLoader
@@ -22,10 +23,10 @@ def generate_ticket(id: int) -> str:
     env = Environment(loader=file_loader)
     template_content = env.get_template(TICKET_COMMAND_TEMPLATE_NAME)
 
-    command = Command.query.get(id)
-    command_meals = CommandMeal.query.filter_by(command=id)
-    table = Table.query.get(command.table)
-    user = User.query.get(command.user)
+    command: Command = Command.query.get(id)
+    command_meals: List[CommandMeal] = CommandMeal.query.filter_by(command=id)
+    table: Table = Table.query.get(command.table)
+    user: User = User.query.get(command.user)
 
     total_command_price = sum(
         command_meal.total_price
@@ -35,7 +36,10 @@ def generate_ticket(id: int) -> str:
     price_without_iva = total_command_price - iva_price
 
     # 'Lunes 3 Enero 2021 21:16:12'
-    current_date = arrow.now(tz=TIMEZONE).format('dddd DD MMMM YYYY HH:mm:ss', locale='ES')
+    current_date = arrow.now(tz=TIMEZONE).format(
+        'dddd DD MMMM YYYY HH:mm:ss',
+        locale='ES'
+    )
 
     data = {
         'EDOMAE_LOGO_BASE64': get_edomae_logo(),
@@ -57,8 +61,7 @@ def generate_ticket(id: int) -> str:
         'COMMAND_IVA': IVA,
         'COMMAND_IVA_PRICE': iva_price,
         'CURRENT_DATE': current_date,
-        # TODO: Replace with name and surname
-        'EMPLOYEE_NAME': user.username
+        'EMPLOYEE_NAME': user.get_full_name()
     }
 
     return template_content.render(**data)
