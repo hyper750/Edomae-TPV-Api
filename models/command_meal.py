@@ -19,8 +19,8 @@ class CommandMeal(DB.Model, CRUDModel):
     # Meal reference
     meal = Column(
         BigInteger,
-        ForeignKey('meal.id', ondelete='CASCADE'),
-        nullable=False
+        ForeignKey('meal.id', ondelete='SET NULL'),
+        nullable=True
     )
 
     # Current price instance

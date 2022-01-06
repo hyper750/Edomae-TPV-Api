@@ -20,8 +20,8 @@ class Table(DB.Model, CRUDModel):
     # Local reference
     local = Column(
         BigInteger,
-        ForeignKey('local.id', ondelete='CASCADE'),
-        nullable=False
+        ForeignKey('local.id', ondelete='SET NULL'),
+        nullable=True
     )
 
     # X coordinates to place it inside the local imatge

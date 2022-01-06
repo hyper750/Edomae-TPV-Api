@@ -16,8 +16,8 @@ class Command(DB.Model, CRUDModel):
     # User that makes that command
     user = Column(
         BigInteger,
-        ForeignKey('user.id', ondelete='CASCADE'),
-        nullable=False
+        ForeignKey('user.id', ondelete='SET NULL'),
+        nullable=True
     )
 
     # Command creation date
@@ -33,7 +33,7 @@ class Command(DB.Model, CRUDModel):
     # Paid method
     payment_method = Column(
         BigInteger,
-        ForeignKey('payment_method.id', ondelete='CASCADE'),
+        ForeignKey('payment_method.id', ondelete='SET NULL'),
         nullable=True
     )
 
