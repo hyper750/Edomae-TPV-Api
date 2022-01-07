@@ -10,7 +10,7 @@ def parse_object_meal_category() -> dict:
     parser = parser.add_argument(
         'imatge', type=FileStorage, location='files', required=True
     )
-    parser = parser.add_argument('order', required=True, type=int)
+    parser = parser.add_argument('order', type=int)
 
     return parser.parse_args()
 

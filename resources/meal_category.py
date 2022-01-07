@@ -1,11 +1,11 @@
+from parser import parse_object_meal_category, parse_query_meal_category
+
+from adapter.db import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from parser import (
-    parse_object_meal_category,
-    parse_query_meal_category
-)
 from models import MealCategory
 from serialization import MealCategorySchema
+from sqlalchemy import func
 
 
 class MealCategoryResource(Resource):
@@ -47,6 +47,10 @@ class MealCategoriesResource(Resource):
         category = MealCategory(
             **parse_object_meal_category()
         )
+
+        # If order is not set, get the it from the last value
+        last_order = DB.session.query(func.max(MealCategory.order)).scalar()
+        category.order = last_order + 1
 
         category.save()
 
