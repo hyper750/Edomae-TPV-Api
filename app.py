@@ -7,7 +7,7 @@ from routes import API_ROUTES, TICKET_API
 from settings import FLASK_CONFIG, CORS_SETTINGS
 from flask_cors import CORS
 
-app = Flask('Commander')
+app = Flask('TPV')
 
 # Configure app
 app.config.update(FLASK_CONFIG)
