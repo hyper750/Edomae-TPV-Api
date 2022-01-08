@@ -1,7 +1,7 @@
 import hashlib
 
 import models
-from adapter.redis import create_redis_revoke_jwt_token
+from db.redis.factory import create_redis_revoke_jwt_token
 from flask_jwt_extended import JWTManager
 from settings import HASH_NAME, ITERATIONS, JTI_EXPIRATION, SECRET_KEY
 
