@@ -1,4 +1,4 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from sqlalchemy import BigInteger, Boolean, Column, DateTime, Float, String
 from sqlalchemy.sql import expression
 from sqlalchemy.sql.schema import ForeignKey

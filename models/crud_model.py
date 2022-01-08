@@ -1,4 +1,4 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 
 
 class CRUDModel:

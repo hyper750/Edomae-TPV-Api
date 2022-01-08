@@ -1,20 +1,17 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
+
 
 # TODO: Add resource to be able to modify your user and if is admin the other users
 # TODO: Be able to add users only for admins
 class User(DB.Model):
-    __tablename__ = 'user'
+    __tablename__ = "user"
 
     id = Column(BigInteger, primary_key=True)
 
     # Enabled
-    enabled = Column(
-        Boolean,
-        nullable=False,
-        server_default=expression.false()
-    )
+    enabled = Column(Boolean, nullable=False, server_default=expression.false())
 
     # Username, eg: hyper75
     username = Column(String(length=320), unique=True, nullable=False)
@@ -38,8 +35,8 @@ class User(DB.Model):
     admin = Column(Boolean, nullable=False, server_default=expression.false())
 
     def get_full_name(self) -> str:
-        return '{} {} {}'.format(
-            self.name.capitalize() if self.name else 'unknown',
-            self.surname.capitalize() if self.surname else '',
-            self.lastname.capitalize() if self.lastname else '',
+        return "{} {} {}".format(
+            self.name.capitalize() if self.name else "unknown",
+            self.surname.capitalize() if self.surname else "",
+            self.lastname.capitalize() if self.lastname else "",
         ).strip()

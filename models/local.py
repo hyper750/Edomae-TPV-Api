@@ -1,8 +1,6 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from settings import LOCAL_IMATGES_DIR
-from sqlalchemy import (
-    BigInteger, Boolean, Column, String
-)
+from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
 from werkzeug.datastructures import FileStorage
@@ -11,7 +9,7 @@ from .crud_model import CRUDModel
 
 
 class Local(DB.Model, CRUDModel):
-    __tablename__ = 'local'
+    __tablename__ = "local"
 
     id = Column(BigInteger, primary_key=True)
 

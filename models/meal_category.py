@@ -1,4 +1,4 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from settings import MEAL_CATEGORY_IMATGES_DIR
 from sqlalchemy import BigInteger, Boolean, Column, Integer, String
 from sqlalchemy.sql import expression
@@ -9,7 +9,7 @@ from .crud_model import CRUDModel
 
 
 class MealCategory(DB.Model, CRUDModel):
-    __tablename__ = 'meal_category'
+    __tablename__ = "meal_category"
 
     id = Column(BigInteger, primary_key=True)
 

@@ -1,9 +1,6 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from settings import MEAL_IMATGES_DIR
-from sqlalchemy import (
-    BigInteger, Boolean, Column, Float, ForeignKey,
-    Integer, String
-)
+from sqlalchemy import BigInteger, Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.sql import expression
 from utils.file_field import save_file_field
 from werkzeug.datastructures import FileStorage
@@ -12,7 +9,7 @@ from .crud_model import CRUDModel
 
 
 class Meal(DB.Model, CRUDModel):
-    __tablename__ = 'meal'
+    __tablename__ = "meal"
 
     id = Column(BigInteger, primary_key=True)
 
@@ -30,9 +27,7 @@ class Meal(DB.Model, CRUDModel):
 
     # Category of the meal, Eg: Entrante, Postre...
     category = Column(
-        BigInteger,
-        ForeignKey('meal_category.id', ondelete='SET NULL'),
-        nullable=True
+        BigInteger, ForeignKey("meal_category.id", ondelete="SET NULL"), nullable=True
     )
 
     # Meal imatge path

@@ -1,4 +1,4 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from sqlalchemy import BigInteger, Column, Float, ForeignKey, Integer, String
 
 from .crud_model import CRUDModel

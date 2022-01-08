@@ -1,4 +1,4 @@
-from adapter.db import MA
+from db.sqlalchemy.sqlalchemy import MA
 from settings import MEAL_CATEGORY_URL
 
 from .file_serialization import FileSerialization

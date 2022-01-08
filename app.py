@@ -1,13 +1,13 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 
-from adapter.db import DB, MA
+from db.sqlalchemy.sqlalchemy import DB, MA
 from logic.user import JWT
 from routes import API_ROUTES, TICKET_API
-from settings import FLASK_CONFIG, CORS_SETTINGS
-from flask_cors import CORS
+from settings import CORS_SETTINGS, FLASK_CONFIG
 
-app = Flask('TPV')
+app = Flask("TPV")
 
 # Configure app
 app.config.update(FLASK_CONFIG)
@@ -33,5 +33,5 @@ API_ROUTES.init_app(app)
 # Initialize ticket routes
 TICKET_API.init_app(app)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()

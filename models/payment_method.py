@@ -1,4 +1,4 @@
-from adapter.db import DB
+from db.sqlalchemy.sqlalchemy import DB
 from settings import PAYMENT_METHOD_IMATGES_DIR
 from sqlalchemy import BigInteger, Boolean, Column, String
 from sqlalchemy.sql import expression
@@ -9,7 +9,7 @@ from .crud_model import CRUDModel
 
 
 class PaymentMethod(DB.Model, CRUDModel):
-    __tablename__ = 'payment_method'
+    __tablename__ = "payment_method"
 
     id = Column(BigInteger, primary_key=True)
 
@@ -17,18 +17,12 @@ class PaymentMethod(DB.Model, CRUDModel):
     enabled = Column(Boolean, nullable=False, default=expression.true())
 
     # Payment method name, Eg: 'Credit card', 'Efectivo'
-    name = Column(
-        String(length=124),
-        nullable=False,
-        unique=True
-    )
+    name = Column(String(length=124), nullable=False, unique=True)
 
     # Imatge filename path
     image = Column(String(250), nullable=False)
 
     def save(self):
         if isinstance(self.image, FileStorage):
-            self.image = save_file_field(
-                self.image, PAYMENT_METHOD_IMATGES_DIR
-            )
+            self.image = save_file_field(self.image, PAYMENT_METHOD_IMATGES_DIR)
         return super().save()
