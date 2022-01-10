@@ -1,6 +1,7 @@
+from parser import parse_object_meal, parse_query_meal
+
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from parser import parse_object_meal, parse_query_meal
 from models import Meal
 from serialization import MealSchema
 
@@ -12,7 +13,7 @@ class MealResource(Resource):
         meal = Meal.query.get(id)
 
         if not meal:
-            return '', 404
+            return "", 404
 
         return MealSchema().dump(meal)
 
@@ -20,15 +21,34 @@ class MealResource(Resource):
         meal = Meal.query.get(id)
         if meal:
             meal.delete()
-        return '', 204
+        return "", 204
 
     def put(self, id: int):
         meal = Meal.query.get(id)
 
         if not meal:
-            return '', 404
+            return "", 404
 
         params = parse_query_meal()
+
+        # Shift other items order
+        if to_order := params.get("order"):
+            current_order = meal.order
+            if current_order < to_order:
+                meals_to_shift = Meal.query.filter(
+                    Meal.order >= current_order + 1
+                ).filter(Meal.order <= to_order)
+
+                for meal_to_shift in meals_to_shift:
+                    meal_to_shift.order -= 1
+            else:
+                meals_to_shift = Meal.query.filter(Meal.order >= to_order).filter(
+                    Meal.order <= current_order - 1
+                )
+
+                for meal_to_shift in meals_to_shift:
+                    meal_to_shift.order += 1
+
         for key, value in params.items():
             setattr(meal, key, value)
 
@@ -41,14 +61,10 @@ class MealsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self):
-        meals = Meal.query.filter_by(
-            **parse_query_meal()
-        ).order_by(Meal.order)
+        meals = Meal.query.filter_by(**parse_query_meal()).order_by(Meal.order)
         return MealSchema(many=True).dump(meals)
 
     def post(self):
-        meal = Meal(
-            **parse_object_meal()
-        )
+        meal = Meal(**parse_object_meal())
         meal.save()
         return MealSchema().dump(meal), 201
