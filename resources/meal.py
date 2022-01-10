@@ -77,7 +77,10 @@ class MealsResource(Resource):
                 .filter(Meal.category == meal.category)
                 .scalar()
             )
-            meal.order = last_order + 1
+            next_order = 1
+            if last_order:
+                next_order = last_order + 1
+            meal.order = next_order
 
         meal.save()
 
