@@ -1,9 +1,11 @@
 from parser import parse_object_meal, parse_query_meal
 
+from db.sqlalchemy.sqlalchemy import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from models import Meal
 from serialization import MealSchema
+from sqlalchemy import func
 
 
 class MealResource(Resource):
@@ -65,6 +67,18 @@ class MealsResource(Resource):
         return MealSchema(many=True).dump(meals)
 
     def post(self):
-        meal = Meal(**parse_object_meal())
+        params = parse_object_meal()
+        meal = Meal(**params)
+
+        # Dynamically add the order
+        if not meal.order:
+            last_order = (
+                DB.session.query(func.max(Meal.order))
+                .filter(Meal.category == meal.category)
+                .scalar()
+            )
+            meal.order = last_order + 1
+
         meal.save()
+
         return MealSchema().dump(meal), 201
