@@ -68,7 +68,9 @@ class MealsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self):
-        meals = Meal.query.filter_by(**parse_query_meal()).order_by(Meal.order)
+        meals = Meal.query.filter_by(**parse_query_meal()).order_by(
+            Meal.order, Meal.name
+        )
         return MealSchema(many=True).dump(meals)
 
     def post(self):
