@@ -21,6 +21,11 @@ class MealResource(Resource):
 
     def delete(self, id: int):
         meal = Meal.query.get(id)
+
+        meals_to_shift = Meal.query.filter(Meal.order > meal.order)
+        for meal_to_shift in meals_to_shift:
+            meal_to_shift.order -= 1
+
         if meal:
             meal.delete()
         return "", 204
