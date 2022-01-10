@@ -21,6 +21,14 @@ class MealCategoryResource(Resource):
 
     def delete(self, id: int):
         category = MealCategory.query.get(id)
+
+        meal_categories_to_shift = MealCategory.query.filter(
+            MealCategory.order > category.order
+        )
+
+        for meal_category_to_shift in meal_categories_to_shift:
+            meal_category_to_shift.order -= 1
+
         if category:
             category.delete()
         return "", 204
