@@ -76,7 +76,10 @@ class MealCategoriesResource(Resource):
         # If order is not set, get the it from the last value
         if not category.order:
             last_order = DB.session.query(func.max(MealCategory.order)).scalar()
-            category.order = last_order + 1
+            next_order = 1
+            if last_order:
+                next_order = last_order + 1
+            category.order = next_order
 
         category.save()
 
