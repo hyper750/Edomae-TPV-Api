@@ -69,7 +69,7 @@ class MealsResource(Resource):
 
     def get(self):
         meals = Meal.query.filter_by(**parse_query_meal()).order_by(
-            Meal.order, Meal.name
+            Meal.order, Meal.category, Meal.name
         )
         return MealSchema(many=True).dump(meals)
 
