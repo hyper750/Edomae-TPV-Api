@@ -16,3 +16,18 @@ class TicketCommandResource(Resource):
             return '', 404
 
         return make_response(generate_ticket(id))
+
+
+class TicketCommandsResource(Resource):
+    method_decorators = (jwt_required(),)
+
+    def get(self):
+        # TODO: Add start date and end date query params
+        response = []
+
+        for command in Command.query.all():
+            response.append(
+                generate_ticket(command.id)
+            )
+
+        return response

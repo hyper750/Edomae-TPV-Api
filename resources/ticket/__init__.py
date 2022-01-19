@@ -1,1 +1,1 @@
-from .ticket_command import TicketCommandResource
+from .ticket_command import TicketCommandResource, TicketCommandsResource
