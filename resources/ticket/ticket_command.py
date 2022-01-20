@@ -37,15 +37,9 @@ class TicketCommandsResource(Resource):
                 Command.creation_date <= end.datetime
             )
             command_ids = [command.id for command in commands]
-            serie_total_price = DB.session.query(func.sum(CommandMeal.total_price)).filter(
-                CommandMeal.command.in_(command_ids)
-            ).scalar()
-            if serie_total_price:
+            if command_ids:
                 response.append(dict(
-                    start_date=start.isoformat(),
-                    end_date=end.isoformat(),
-                    total_price=serie_total_price,
-                    html=generate_serie_ticket(start, serie_total_price)
+                    html=generate_serie_ticket(start, command_ids)
                 ))
 
         return response
