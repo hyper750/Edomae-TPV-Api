@@ -46,6 +46,7 @@ def generate_ticket(id: int) -> str:
     price_without_iva = round(total_command_price - iva_price, 2)
 
     # 'Lunes 3 Enero 2021 21:16:12'
+    # TODO: Command creation date
     current_date = arrow.now(tz=TIMEZONE).format(
         'dddd DD MMMM YYYY HH:mm:ss',
         locale='ES'
