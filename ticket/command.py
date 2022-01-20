@@ -115,18 +115,18 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
     for i, (command_meal, meal, meal_category) in enumerate(res):
         # Fill first category
         if last_category is None:
-            last_category = meal_category.id
+            last_category = meal_category
 
         # When changing meals save the last categories
         # Or is the last item
-        if meal_category.id != last_category:
-            last_category = meal_category.id
+        if meal_category.id != last_category.id:
             # Push previos categories data
             meal_by_categories.append({
-                'name': meal_category.name,
+                'name': last_category.name,
                 'total_price': 0,
                 'meals': list(meals.values()),
             })
+            last_category = meal_category
             meals = dict()
 
         # Append new meal on that category
