@@ -50,7 +50,7 @@ REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
 TIMEZONE = 'Europe/Madrid'
 
 # Iva
-IVA = 21
+IVA = 10
 
 # Static files
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
