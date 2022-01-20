@@ -4,6 +4,7 @@ from flask import make_response
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
 from models import Command, CommandMeal
+from sqlalchemy import func
 
 from ticket.command import generate_ticket
 
@@ -36,7 +37,7 @@ class TicketCommandsResource(Resource):
                 Command.creation_date <= end.datetime
             )
             command_ids = [command.id for command in commands]
-            serie_total_price = DB.session.query(DB.session.func.sum(CommandMeal.total_price)).filter(
+            serie_total_price = DB.session.query(func.sum(CommandMeal.total_price)).filter(
                 CommandMeal.command.in_(command_ids)
             )
             response.append(dict(
