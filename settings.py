@@ -79,11 +79,14 @@ LOCAL_IMATGES_URL = f'{STATIC_URL}/local'
 TEMPLATE_DIR = os.path.join(
     'ticket', 'template',
 )
+
 # Template of the ticket command
 TICKET_COMMAND_TEMPLATE_NAME = 'command.html'
 TICKET_COMMAND_TEMPLATE = os.path.join(
     TEMPLATE_DIR, TICKET_COMMAND_TEMPLATE_NAME
 )
+TICKET_SERIE_TEMPLATE_NAME = 'serie_command.html'
+
 # Edomae logo for the template
 TICKET_COMMAND_LOGO = os.path.join(
     TEMPLATE_DIR, 'logo.png'

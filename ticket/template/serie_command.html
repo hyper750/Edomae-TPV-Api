@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+    <style>
+        * {
+            font-family: 'Times New Roman';
+            font-size: 12px;
+        }
+        h2 {
+            font-size: 14px;
+        }
+        body {
+            width: 180px;
+            max-width: 180px;
+        }
+        .article-table {
+            width: 100%;
+        }
+        .float-right {
+            float: right;
+        }
+        .article-quantity {
+            width: 24px;
+            max-width: 24px;
+            word-break: break-all;
+            text-align: center;
+        }
+        .article-name {
+            width: 80px;
+            max-width: 80px;
+            word-break: break-all;
+        }
+        .article-price {
+            width: 36px;
+            max-width: 36px;
+            word-break: break-all;
+            text-align: center;
+        }
+        table {
+            border-top: 1px solid black;
+            border-collapse: collapse;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .d-inline {
+            display: inline;
+        }
+    </style>
+    <body>
+        <div class="text-center">
+            <img src="{{ EDOMAE_LOGO }}" alt="Edomae logo" style="width: 96px;" />
+        </div>
+        <h2>
+            <span>Telefono</span>
+            <span class="float-right">690 70 62 44</span>
+        </h2>
+        <h2>
+            <span>Página web</span>
+            <span class="float-right">edomae.es</span>
+        </h2>
+        <span>---------------------------------------------</span>
+        <h2>
+            <span>Factura diaria</span>
+            <span class="float-right">{{ SERIE_DATE }}</span>
+        </h2>
+
+        <h2>
+            <span class="d-inline">Total</span>
+            <span class="float-right d-inline">{{ TOTAL_PRICE }}</span>
+        </h2>
+        <h3>
+            <span class="d-inline">Base Imp. IVA</span>
+            <span class="float-right d-inline">{{ TOTAL_PRICE_WITHOUT_IVA }}</span>
+        </h3>
+        <h3>
+            <span class="d-inline">{{ IVA }}% IVA</span>
+            <span class="float-right d-inline">{{ IVA_PRICE }}</span>
+        </h3>
+    </body>
+</html>
