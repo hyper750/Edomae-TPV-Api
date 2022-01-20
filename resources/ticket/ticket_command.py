@@ -45,7 +45,7 @@ class TicketCommandsResource(Resource):
                     start_date=start.isoformat(),
                     end_date=end.isoformat(),
                     total_price=serie_total_price,
-                    html=generate_serie_ticket(start_date, serie_total_price)
+                    html=generate_serie_ticket(start, serie_total_price)
                 ))
 
         return response
