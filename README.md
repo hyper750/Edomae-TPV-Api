@@ -8,6 +8,11 @@
 - `REDIS_PORT` int: Port for the redis service, default `6379`
 - `REDIS_PASSWORD` str: Password for the redis service
 
+### Tickets
+- `SOCIETY_NAME` str: Society name, eg: `Bla Menorca S.L`
+- `SOCIETY_CIF` str: Society nif, eg: `B12345678`
+- `SOCIETY_QUARTERS` str: Society quarter/address, eg: `C/Bona tramuntana 26`
+
 ## Run
 ```bash
 python app.py
