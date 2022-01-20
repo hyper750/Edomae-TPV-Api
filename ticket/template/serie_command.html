@@ -45,31 +45,24 @@
         .d-inline {
             display: inline;
         }
+        .font-italic {
+            font-style: italic;
+        }
     </style>
     <body>
         <div class="text-center">
             <img src="{{ EDOMAE_LOGO }}" alt="Edomae logo" style="width: 96px;" />
         </div>
-        <h2>
-            <span>Nombre de la sociedad</span>
-            <span class="float-right">{{ SOCIETY_NAME }}</span>
-        </h2>
-        <h2>
-            <span>CIF</span>
-            <span class="float-right">{{ SOCIETY_CIF }}</span>
-        </h2>
-        <h2>
-            <span>Domicilio fiscal</span>
-            <span class="float-right">{{ SOCIETY_QUARTERS }}</span>
-        </h2>
-        <h2>
-            <span>Telefono</span>
-            <span class="float-right">690 70 62 44</span>
-        </h2>
-        <h2>
-            <span>Página web</span>
-            <span class="float-right">edomae.es</span>
-        </h2>
+        <h2>Nombre de la sociedad</h2>
+        <p class="font-italic">{{ SOCIETY_NAME }}</p>
+        <h2>CIF</h2>
+        <p class="font-italic">{{ SOCIETY_CIF }}</p>
+        <h2>Domicilio fiscal</h2>
+        <p class="font-italic">{{ SOCIETY_QUARTERS }}</p>
+        <h2>Telefono</h2>
+        <p class="font-italic">690 70 62 44</p>
+        <h2>Página web</h2>
+        <p class="font-italic">edomae.es</p>
         <span>---------------------------------------------</span>
         <h2>
             <span>Factura diaria</span>
