@@ -6,7 +6,7 @@ from flask_restful import Resource
 from models import Command, CommandMeal
 from sqlalchemy import func
 
-from ticket.command import generate_ticket
+from ticket.command import generate_ticket, generate_serie_ticket
 
 
 class TicketCommandResource(Resource):
@@ -44,7 +44,8 @@ class TicketCommandsResource(Resource):
                 response.append(dict(
                     start_date=start.isoformat(),
                     end_date=end.isoformat(),
-                    total_price=serie_total_price
+                    total_price=serie_total_price,
+                    html=generate_serie_ticket(start_date, serie_total_price)
                 ))
 
         return response

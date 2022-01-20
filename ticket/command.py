@@ -6,7 +6,8 @@ from jinja2 import Environment, FileSystemLoader
 from models import Command, CommandMeal, Meal, Table, User
 from settings import (
     IVA, TEMPLATE_DIR, TICKET_COMMAND_LOGO,
-    TICKET_COMMAND_TEMPLATE_NAME, TIMEZONE
+    TICKET_COMMAND_TEMPLATE_NAME, TICKET_SERIE_TEMPLATE_NAME,
+    TIMEZONE
 )
 from utils.math import calculate_percentage
 
@@ -74,5 +75,28 @@ def generate_ticket(id: int) -> str:
         'CURRENT_DATE': current_date,
         'EMPLOYEE_NAME': user.get_full_name()
     }
+
+    return template_content.render(**data)
+
+
+def generate_serie_ticket(serie_date: arrow.Arrow, total_price: float) -> str:
+    iva_price = round(
+        calculate_percentage(total_price, IVA),
+        2
+    )
+    price_without_iva = round(total_price - iva_price, 2)
+
+    data = {
+        'EDOMAE_LOGO': get_edomae_logo(),
+        'SERIE_DATE': serie_date.date().isoformat(),
+        'TOTAL_PRICE': round(total_price, 2),
+        'TOTAL_PRICE_WITHOUT_IVA': price_without_iva,
+        'IVA': IVA,
+        'IVA_PRICE': iva_price
+    }
+
+    file_loader = FileSystemLoader(TEMPLATE_DIR)
+    env = Environment(loader=file_loader)
+    template_content = env.get_template(TICKET_SERIE_TEMPLATE_NAME)
 
     return template_content.render(**data)
