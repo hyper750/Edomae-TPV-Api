@@ -7,7 +7,7 @@ from models import Command, CommandMeal, Meal, Table, User, MealCategory
 from settings import (
     IVA, TEMPLATE_DIR, TICKET_COMMAND_LOGO,
     TICKET_COMMAND_TEMPLATE_NAME, TICKET_SERIE_TEMPLATE_NAME,
-    TIMEZONE
+    TIMEZONE, SOCIETY_NAME, SOCIETY_CIF, SOCIETY_QUARTERS
 )
 from utils.math import calculate_percentage
 from sqlalchemy import func
@@ -159,6 +159,9 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
         category['total_price'] = total_category_price
 
     data = {
+        'SOCIETY_NAME': SOCIETY_NAME,
+        'SOCIETY_CIF': SOCIETY_CIF,
+        'SOCIETY_QUARTERS': SOCIETY_QUARTERS,
         'EDOMAE_LOGO': get_edomae_logo(),
         'SERIE_DATE': serie_date.date().isoformat(),
         'TOTAL_PRICE': round(total_price, 2),

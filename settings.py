@@ -91,3 +91,8 @@ TICKET_SERIE_TEMPLATE_NAME = 'serie_command.html'
 TICKET_COMMAND_LOGO = os.path.join(
     TEMPLATE_DIR, 'logo.png'
 )
+
+# Society config
+SOCIETY_NAME = os.environ.get('SOCIETY_NAME')
+SOCIETY_CIF = os.environ.get('SOCIETY_CIF')
+SOCIETY_QUARTERS = os.environ.get('SOCIETY_QUARTERS')
