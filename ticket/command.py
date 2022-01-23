@@ -134,13 +134,13 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
             meals[meal.id] = dict(
                 name=meal.name,
                 quantity=command_meal.number,
-                price=command_meal.price,
+                price=round(command_meal.price, 2),
                 total_price=command_meal.total_price
             )
         else:
             # Update price and quantity
             meals[meal.id]['quantity'] += command_meal.number
-            meals[meal.id]['total_price'] += round(command_meal.total_price, 2)
+            meals[meal.id]['total_price'] = round(meals[meal.id]['total_price'] + command_meal.total_price, 2)
 
         # Is last item
         if i + 1 >= total_results:
