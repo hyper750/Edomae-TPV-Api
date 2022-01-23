@@ -140,7 +140,7 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
         else:
             # Update price and quantity
             meals[meal.id]['quantity'] += command_meal.number
-            meals[meal.id]['total_price'] += command_meal.total_price
+            meals[meal.id]['total_price'] += round(command_meal.total_price, 2)
 
         # Is last item
         if i + 1 >= total_results:
@@ -156,7 +156,7 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
             meal['total_price']
             for meal in category.get('meals', [])
         )
-        category['total_price'] = total_category_price
+        category['total_price'] = round(total_category_price, 2)
 
     data = {
         'SOCIETY_NAME': SOCIETY_NAME,
