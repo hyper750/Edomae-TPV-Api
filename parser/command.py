@@ -8,6 +8,7 @@ def parse_object_command() -> dict:
     parser = parser.add_argument('payment_method', type=int, store_missing=False)
     parser = parser.add_argument('is_home_delivery', type=inputs.boolean, store_missing=False)
     parser = parser.add_argument('delivery_address', type=str, store_missing=False)
+    parser = parser.add_argument('delivery_details', type=str, store_missing=False)
     parser = parser.add_argument('extra', type=str, store_missing=False)
     parser = parser.add_argument('discount', type=float, store_missing=False)
     parser = parser.add_argument('table', type=int, store_missing=False)

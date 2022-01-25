@@ -11,6 +11,7 @@ class CommandSchema(MA.Schema):
             "payment_method",
             "is_home_delivery",
             "delivery_address",
+            "delivery_details",
             "table",
             "table_name",
             "discount",

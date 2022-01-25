@@ -62,6 +62,12 @@ class Command(DB.Model, CRUDModel):
         nullable=True
     )
 
+    # Delivery details
+    delivery_details = Column(
+        String(length=256),
+        nullable=True
+    )
+
     # Assign command table
     table = Column(
         BigInteger,
