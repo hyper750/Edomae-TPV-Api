@@ -23,4 +23,4 @@ class AbstractTicket(ABC):
         env = Environment(loader=file_loader)
         template_content = env.get_template(self.get_template_name())
 
-        return template_content.render(**self.get_content())
+        return template_content.render(**self.get_content(id))
