@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+    <style>
+        * {
+            font-family: 'Times New Roman';
+            font-size: 12px;
+        }
+        h2 {
+            font-size: 14px;
+        }
+        body {
+            width: 180px;
+            max-width: 180px;
+        }
+        .article-table {
+            width: 100%;
+        }
+        .float-right {
+            float: right;
+        }
+        .article-quantity {
+            width: 24px;
+            max-width: 24px;
+            word-break: break-all;
+            text-align: center;
+        }
+        .article-name {
+            width: 80px;
+            max-width: 80px;
+            word-break: break-all;
+        }
+        .article-price {
+            width: 36px;
+            max-width: 36px;
+            word-break: break-all;
+            text-align: center;
+        }
+        table {
+            border-top: 1px solid black;
+            border-collapse: collapse;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .d-inline {
+            display: inline;
+        }
+    </style>
+    <body>
+        <div class="text-center">
+            <img src="{{ EDOMAE_LOGO }}" alt="Edomae logo" style="width: 96px;" />
+        </div>
+        <h2>
+            <span>Telefono</span>
+            <span class="float-right">690 70 62 44</span>
+        </h2>
+        <h2>
+            <span>Página web</span>
+            <span class="float-right">edomae.es</span>
+        </h2>
+        <h2 class="text-center">
+            Factura simplificada
+        </h2>
+        <span>---------------------------------------------</span>
+        <h2>
+            <span>Factura</span>
+            <span class="float-right">{{ COMMAND_ID }}</span>
+        </h2>
+        <h2>
+            <span>Dirección</span>
+            <span>{{ COMMAND_ADDRESS }}</span>
+        </h2>
+        {% if COMMAND_DETAILS %}
+            <h2>
+                <span>Detalles</span>
+                <span>{{ COMMAND_DETAILS }}</span>
+            </h2>
+        {% endif %}
+
+        <table class="article-table">
+            <thead>
+                <tr>
+                    <th class="article-quantity">
+                        Un.
+                    </th>
+                    <th class="article-name">
+                        Nombre
+                    </th>
+                    <th class="article-price">
+                        Precio
+                    </th>
+                    <th class="article-price">
+                        Total
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in COMMAND_MEALS %}
+                <tr>
+                    <td class="article-quantity">
+                        {{ meal.quantity }}
+                    </td>
+                    <td class="article-name">
+                        {{ meal.name }} {% if meal.extra %}/ {{ meal.extra }} {% endif %}
+                    </td>
+                    <td class="article-price">
+                        {{ meal.price }}
+                    </td>
+                    <td class="article-price">
+                        {{ meal.total_price }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>
+            <span class="d-inline">Total</span>
+            <span class="float-right d-inline">{{ COMMAND_TOTAL_PRICE }}&euro;</span>
+        </h2>
+        <h3>
+            <span class="d-inline">Base Imp. IVA</span>
+            <span class="float-right d-inline">{{ COMMAND_TOTAL_PRICE_WITHOUT_IVA }}&euro;</span>
+        </h3>
+        <h3>
+            <span class="d-inline">{{ COMMAND_IVA }}% IVA</span>
+            <span class="float-right d-inline">{{ COMMAND_IVA_PRICE }}&euro;</span>
+        </h3>
+        <p>
+            {{ CURRENT_DATE }}
+        </p>
+        <p>
+            {{ EMPLOYEE_NAME }}
+        </p>
+        <h3 class="text-center">
+            GRACIAS POR SU VISITA!
+        </h3>
+    </body>
+</html>

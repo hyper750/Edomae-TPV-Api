@@ -12,13 +12,15 @@ from sqlalchemy import func
 from utils.math import calculate_percentage
 
 from .abstract_ticket import AbstractTicket
-from .table_ticket import TableTicket
+from .command_delivery import CommandDelivery
 from .logo import get_edomae_logo
+from .table_ticket import TableTicket
 
 
 def generate_ticket(id: int) -> str:
     TICKETS_AVAILABLE: List[AbstractTicket] = [
-        TableTicket()
+        TableTicket(),
+        CommandDelivery()
     ]
 
     for ticket_available in TICKETS_AVAILABLE:

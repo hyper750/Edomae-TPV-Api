@@ -82,6 +82,7 @@ TEMPLATE_DIR = os.path.join(
 
 # Template of the ticket command
 TICKET_COMMAND_TEMPLATE_NAME = 'command.html'
+TICKET_COMMAND_DELIVERY_TEMPLATE_NAME = 'command_delivery.html'
 TICKET_SERIE_TEMPLATE_NAME = 'serie_command.html'
 
 # Edomae logo for the template
