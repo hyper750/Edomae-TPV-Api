@@ -66,16 +66,20 @@
             <span>Factura</span>
             <span class="float-right">{{ COMMAND_ID }}</span>
         </h2>
+
         <h2>
             <span>Dirección</span>
-            <span>{{ COMMAND_ADDRESS }}</span>
+            {% if COMMAND_ADDRESS %}
+                <span>{{ COMMAND_ADDRESS }}</span>
+            {% endif %}
         </h2>
-        {% if COMMAND_DETAILS %}
-            <h2>
-                <span>Detalles</span>
+        
+        <h2>
+            <span>Detalles</span>
+            {% if COMMAND_DETAILS %}
                 <span>{{ COMMAND_DETAILS }}</span>
-            </h2>
-        {% endif %}
+            {% endif %}
+        </h2>
 
         <table class="article-table">
             <thead>
