@@ -12,3 +12,4 @@ from .payment_method import (
     parse_query_payment_method
 )
 from .table import parse_object_table, parse_query_table
+from .ticket_command import parse_query_ticket_command
