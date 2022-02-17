@@ -1,12 +1,12 @@
+from parser import parse_query_ticket_command
+
 import arrow
-from db.sqlalchemy.sqlalchemy import DB
 from flask import make_response
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from models import Command, CommandMeal
-from sqlalchemy import func
+from models import Command
 
-from ticket.command import generate_ticket, generate_serie_ticket
+from ticket.command import generate_serie_ticket, generate_ticket
 
 
 class TicketCommandResource(Resource):
@@ -25,11 +25,12 @@ class TicketCommandsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self):
-        # TODO: Add start date and end date query params
         response = []
 
-        start_date = arrow.Arrow(2021, 7, 1)
-        end_date = arrow.Arrow(2022, 7, 1)
+        params = parse_query_ticket_command()
+
+        start_date = arrow.get(params.get('creation_date__gte')).floor('day')
+        end_date = arrow.get(params.get('creation_date__lte')).ceil('day')
 
         for start, end in arrow.Arrow.interval('day', start_date, end_date):
             commands = Command.query.filter(
