@@ -32,7 +32,7 @@ def generate_serie_ticket(serie_date: arrow.Arrow, command_ids: List[int]) -> st
     # Total
     total_price = DB.session.query(func.sum(CommandMeal.total_price)).filter(
         CommandMeal.command.in_(command_ids)
-    ).scalar()
+    ).scalar() or 0
 
     iva_price = round(
         calculate_percentage(total_price, IVA),
