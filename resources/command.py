@@ -67,13 +67,16 @@ class CommandsResource(Resource):
         # Filter by creation date
         if start_date:
             commands = commands.filter(
-                Command.creation_date > arrow.get(
+                Command.creation_date >= arrow.get(
                     start_date
                 ).floor('day').datetime
             )
         if end_date:
             commands = commands.filter(
-                Command.creation_date < arrow.get(end_date).ceil('day').datetime)
+                Command.creation_date <= arrow.get(
+                    end_date
+                ).ceil('day').datetime
+            )
 
         # Order by creation date desc, most recent on the top
         commands = commands.order_by(desc(Command.creation_date))
