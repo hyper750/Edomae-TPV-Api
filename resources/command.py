@@ -1,6 +1,8 @@
+from parser import parse_object_command, parse_query_command
+
+import arrow
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_restful import Resource
-from parser import parse_object_command, parse_query_command
 from logic.model_filter.paginate import paginate_queryset
 from models import Command
 from serialization import CommandSchema
@@ -64,9 +66,14 @@ class CommandsResource(Resource):
 
         # Filter by creation date
         if start_date:
-            commands = commands.filter(Command.creation_date > start_date)
+            commands = commands.filter(
+                Command.creation_date > arrow.get(
+                    start_date
+                ).floor('day').datetime
+            )
         if end_date:
-            commands = commands.filter(Command.creation_date < end_date)
+            commands = commands.filter(
+                Command.creation_date < arrow.get(end_date).ceil('day').datetime)
 
         # Order by creation date desc, most recent on the top
         commands = commands.order_by(desc(Command.creation_date))
