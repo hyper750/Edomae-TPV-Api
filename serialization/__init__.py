@@ -1,5 +1,6 @@
 from .command import CommandSchema
 from .command_meal import CommandMealSchema
+from .contact_message import ContactMessageSchema
 from .file_serialization import FileSerialization
 from .local import LocalSchema
 from .meal import MealSchema
