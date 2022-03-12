@@ -1,5 +1,6 @@
 from .command import CommandResource, CommandsResource
 from .command_meal import CommandMealResource, CommandMealsResource
+from .contact_message import ContactMessageResource, ContactMessagesResource
 from .local import LocalResource, LocalsResource
 from .login import Auth
 from .meal import MealResource, MealsResource

@@ -7,7 +7,8 @@ from resources import (
     CommandResource, CommandsResource,
     TableResource, TablesResources,
     CommandMealResource, CommandMealsResource,
-    LocalResource, LocalsResource
+    LocalResource, LocalsResource,
+    ContactMessageResource, ContactMessagesResource
 )
 
 API_ROUTES = Api()
@@ -45,3 +46,7 @@ API_ROUTES.add_resource(TablesResources, '/table')
 # Local
 API_ROUTES.add_resource(LocalResource, '/local/<int:id>')
 API_ROUTES.add_resource(LocalsResource, '/local')
+
+# Contact message
+API_ROUTES.add_resource(ContactMessageResource, '/contactMessage/<int:id>')
+API_ROUTES.add_resource(ContactMessagesResource, '/contactMessage')
