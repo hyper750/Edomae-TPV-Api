@@ -35,10 +35,10 @@ class ContactMessageResource(Resource):
 
         if not contact_message:
             return '', 404
-        
+
         for key, value in parse_contact_message_update().items():
             setattr(contact_message, key, value)
-        
+
         contact_message.save()
 
         return ContactMessageSchema().dump(contact_message)
@@ -59,7 +59,7 @@ class ContactMessagesResource(Resource):
         params = parse_contact_message_query()
         page_size = params.get('page_size')
         page_num = params.get('page_num')
-        contact_messages = ContactMessage.query.all().order_by(
+        contact_messages = ContactMessage.query.order_by(
             desc(ContactMessage.creation_date)
         )
 
