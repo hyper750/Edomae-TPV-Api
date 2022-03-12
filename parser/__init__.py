@@ -1,6 +1,11 @@
 from .authentication_parser import parse_login
 from .command import parse_object_command, parse_query_command
 from .command_meal import parse_object_command_meal, parse_query_command_meal
+from .contact_message import (
+    parse_contact_message_object,
+    parse_contact_message_query,
+    parse_contact_message_update
+)
 from .local import parse_object_local, parse_query_local
 from .meal import parse_object_meal, parse_query_meal
 from .meal_category import (
