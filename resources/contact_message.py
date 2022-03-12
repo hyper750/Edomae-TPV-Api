@@ -54,7 +54,7 @@ class ContactMessagesResource(Resource):
         contact_message.save()
         return ContactMessageSchema().dump(contact_message), 201
 
-    @jwt_required
+    @jwt_required()
     def get(self):
         params = parse_contact_message_query()
         page_size = params.get('page_size')
