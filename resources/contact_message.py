@@ -55,7 +55,7 @@ class ContactMessagesResource(Resource):
         google_client_token = params.pop('g-recaptcha-response')
         g_recaptcha = GoogleRecaptchaV3(SERVER_KEY=RECAPTCHA_SERVER_KEY)
         if not g_recaptcha.site_verify(google_client_token, request.remote_addr):
-            return {'error': 'Error solving google recaptcha'}, 404
+            return {'error': 'Error solving google recaptcha'}, 403
 
         contact_message = ContactMessage(
             **params
