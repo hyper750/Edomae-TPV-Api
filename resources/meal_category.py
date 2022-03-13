@@ -68,8 +68,8 @@ class MealCategoryResource(Resource):
 
 
 class MealCategoriesResource(Resource):
-    method_decorators = (jwt_required(),)
 
+    @jwt_required()
     def post(self):
         category = MealCategory(**parse_object_meal_category())
 
