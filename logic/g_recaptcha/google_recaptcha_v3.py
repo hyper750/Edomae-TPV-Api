@@ -30,6 +30,6 @@ class GoogleRecaptchaV3:
         response = requests.post(
             'https://www.google.com/recaptcha/api/siteverify',
             data=post_params
-        )
+        ).json()
 
         return response.get('success', False)
