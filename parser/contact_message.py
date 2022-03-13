@@ -13,6 +13,7 @@ def parse_contact_message_query() -> dict:
 def parse_contact_message_object() -> dict:
     parser = reqparse.RequestParser()
 
+    parser = parser.add_argument('g-recaptcha-response', type=str, required=True)
     parser = parser.add_argument('name', type=str, required=True)
     parser = parser.add_argument('email', type=str, required=True)
     parser = parser.add_argument('message', type=str, required=True)

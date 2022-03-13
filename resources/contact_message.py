@@ -4,10 +4,12 @@ from parser import (
 )
 
 from flask_jwt_extended import jwt_required
-from flask_restful import Resource
+from flask_restful import Resource, request
+from logic.g_recaptcha import GoogleRecaptchaV3
 from logic.model_filter.paginate import paginate_queryset
 from models import ContactMessage
 from serialization import ContactMessageSchema
+from settings import RECAPTCHA_SERVER_KEY
 from sqlalchemy import desc
 
 
@@ -47,8 +49,16 @@ class ContactMessageResource(Resource):
 class ContactMessagesResource(Resource):
 
     def post(self):
+        params = parse_contact_message_object()
+
+        # Validate google token
+        google_client_token = params.pop('g-recaptcha-response')
+        g_recaptcha = GoogleRecaptchaV3(SERVER_KEY=RECAPTCHA_SERVER_KEY)
+        if not g_recaptcha.site_verify(google_client_token, request.remote_addr):
+            return {'error': 'Error solving google recaptcha'}, 404
+
         contact_message = ContactMessage(
-            **parse_contact_message_object()
+            **params
         )
 
         contact_message.save()

@@ -32,4 +32,4 @@ class GoogleRecaptchaV3:
             data=post_params
         )
 
-        return response.get('success')
+        return response.get('success', False)

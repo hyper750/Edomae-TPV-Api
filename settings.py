@@ -94,3 +94,6 @@ TICKET_COMMAND_LOGO = os.path.join(
 SOCIETY_NAME = os.environ.get('SOCIETY_NAME')
 SOCIETY_CIF = os.environ.get('SOCIETY_CIF')
 SOCIETY_QUARTERS = os.environ.get('SOCIETY_QUARTERS')
+
+# Google recaptcha server key
+RECAPTCHA_SERVER_KEY = os.environ.get('RECAPTCHA_SERVER_KEY')

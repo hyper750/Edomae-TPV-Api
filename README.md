@@ -7,6 +7,7 @@
 - `REDIS_HOST` str: Host/Ip for the redis service, default `127.0.0.1`
 - `REDIS_PORT` int: Port for the redis service, default `6379`
 - `REDIS_PASSWORD` str: Password for the redis service
+- `RECAPTCHA_SERVER_KEY` str: Google recaptcha server key
 
 ### Tickets
 - `SOCIETY_NAME` str: Society name, eg: `Bla Menorca S.L`
