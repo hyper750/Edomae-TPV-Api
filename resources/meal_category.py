@@ -3,7 +3,7 @@ from parser import parse_object_meal_category, parse_query_meal_category
 from db.sqlalchemy.sqlalchemy import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
-from models import MealCategory
+from models import Meal, MealCategory
 from serialization import MealCategorySchema
 from sqlalchemy import func
 
@@ -64,6 +64,14 @@ class MealCategoryResource(Resource):
 
         category.save()
 
+        # Enable/Disable all meals for that category
+        # If the enabled field is updated
+        if params.get('enabled') is not None:
+            meals = Meal.query.filter_by(category=id)
+            for meal in meals:
+                meal.enabled = params.get('enabled')
+                meal.save()
+
         return MealCategorySchema().dump(category)
 
 
@@ -75,7 +83,9 @@ class MealCategoriesResource(Resource):
 
         # If order is not set, get the it from the last value
         if not category.order:
-            last_order = DB.session.query(func.max(MealCategory.order)).scalar()
+            last_order = DB.session.query(
+                func.max(MealCategory.order)
+            ).scalar()
             next_order = 1
             if last_order:
                 next_order = last_order + 1
