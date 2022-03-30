@@ -12,3 +12,4 @@ pytz
 redis
 jinja2
 requests
+Werkzeug==2.0.3
