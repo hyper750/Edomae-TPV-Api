@@ -8,6 +8,7 @@
 - `REDIS_PORT` int: Port for the redis service, default `6379`
 - `REDIS_PASSWORD` str: Password for the redis service
 - `RECAPTCHA_SERVER_KEY` str: Google recaptcha server key
+- `AVAILABLE_LANGUAGES` List[str]: List of available languages
 
 ### Tickets
 - `SOCIETY_NAME` str: Society name, eg: `Bla Menorca S.L`
