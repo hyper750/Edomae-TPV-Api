@@ -1,3 +1,4 @@
+import ast
 import os
 from datetime import timedelta
 
@@ -97,3 +98,5 @@ SOCIETY_QUARTERS = os.environ.get('SOCIETY_QUARTERS')
 
 # Google recaptcha server key
 RECAPTCHA_SERVER_KEY = os.environ.get('RECAPTCHA_SERVER_KEY')
+
+AVAILABLE_LANGUAGES = ast.literal_eval(os.environ.get('AVAILABLE_LANGUAGES'))
