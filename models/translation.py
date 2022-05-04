@@ -1,8 +1,8 @@
 from db.sqlalchemy.sqlalchemy import DB
 from sqlalchemy import BigInteger, Column, Enum, String, UniqueConstraint
 
-from language import Language
 from models.crud_model import CRUDModel
+from models.language import Language
 
 
 class Translation(DB.Model, CRUDModel):
