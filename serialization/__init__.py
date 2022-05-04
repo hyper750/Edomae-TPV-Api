@@ -1,6 +1,7 @@
 from .command import CommandSchema
 from .command_meal import CommandMealSchema
 from .contact_message import ContactMessageSchema
+from .enum import EnumSerialization
 from .file_serialization import FileSerialization
 from .local import LocalSchema
 from .meal import MealSchema
