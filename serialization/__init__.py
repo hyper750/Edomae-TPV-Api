@@ -7,4 +7,5 @@ from .meal import MealSchema
 from .meal_category import MealCategorySchema
 from .payment_method import PaymentMethodSchema
 from .table import TableSchema
+from .translation import TranslationSchema
 from .user import UserSchema
