@@ -52,3 +52,18 @@ class TranslationsResource(Resource):
         )
         translation.save()
         return TranslationSchema().dump(translation), 201
+
+# TODO: Optionally add language parameter
+# If is not passed by parameter, use the original key (name, description whatever)
+# If is passed by parameter the language
+# params = parse_meal_query()
+# if lang := params.get('lang')
+#     meal.name = translation(meal.name, lang)
+#     meal.description = translation(meal.description, lang)
+
+# TODO: Add list of recommended translations
+# That list should include
+# Meal.name
+# Meal.description
+# MealCategory.name
+# PaymentMethod.name
