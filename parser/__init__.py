@@ -19,3 +19,4 @@ from .payment_method import (
 from .table import parse_object_table, parse_query_table
 from .ticket_command import parse_query_ticket_command
 from .translation import parse_translation_object, parse_translation_query
+from .translation_recommendation import parse_translation_recommendation_query

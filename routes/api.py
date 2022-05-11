@@ -10,6 +10,7 @@ from resources import (
     LocalResource, LocalsResource,
     ContactMessageResource, ContactMessagesResource,
     TranslationResource, TranslationsResource,
+    TranslationRecomendationResource,
 )
 
 API_ROUTES = Api()
@@ -55,3 +56,6 @@ API_ROUTES.add_resource(ContactMessagesResource, '/contactMessage')
 # Translation
 API_ROUTES.add_resource(TranslationResource, '/translation/<int:id>')
 API_ROUTES.add_resource(TranslationsResource, '/translation')
+
+# Translation recommandation
+API_ROUTES.add_resource(TranslationRecomendationResource, '/translation/recommendation')
