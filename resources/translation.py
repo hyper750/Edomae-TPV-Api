@@ -60,10 +60,3 @@ class TranslationsResource(Resource):
 # if lang := params.get('lang')
 #     meal.name = translation(meal.name, lang)
 #     meal.description = translation(meal.description, lang)
-
-# TODO: Add list of recommended translations
-# That list should include
-# Meal.name
-# Meal.description
-# MealCategory.name
-# PaymentMethod.name
