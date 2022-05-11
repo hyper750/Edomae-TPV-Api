@@ -2,6 +2,7 @@ from parser import parse_object_payment_method, parse_query_payment_method
 
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
+from logic.translation import get_translation
 from models import PaymentMethod
 from serialization import PaymentMethodSchema
 
@@ -41,9 +42,21 @@ class PaymentMethodsResource(Resource):
     method_decorators = (jwt_required(),)
 
     def get(self):
+        # GET params
+        params: dict = parse_query_payment_method()
+
+        # Language to translate the payment methods
+        lang = params.pop('lang', None)
+
+        # Payment methods to return
         payment_methods = PaymentMethod.query.filter_by(
-            **parse_query_payment_method()
+            **params
         ).order_by(PaymentMethod.name)
+
+        # Translate payment methods
+        for payment_method in payment_methods:
+            payment_method.name = get_translation(payment_method.name, lang)
+
         return PaymentMethodSchema(many=True).dump(payment_methods)
 
     def post(self):

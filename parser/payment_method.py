@@ -21,6 +21,7 @@ def parse_query_payment_method() -> dict:
         'enabled', type=inputs.boolean, store_missing=False
     )
     parser = parser.add_argument('name', type=str, store_missing=False)
+    parser = parser.add_argument('lang', type=str, store_missing=False)
     parser = parser.add_argument(
         'image', type=FileStorage, location='files', store_missing=False
     )
