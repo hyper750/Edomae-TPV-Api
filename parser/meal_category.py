@@ -20,6 +20,7 @@ def parse_query_meal_category() -> dict:
 
     parser = parser.add_argument('enabled', type=inputs.boolean, store_missing=False)
     parser = parser.add_argument('name', type=str, store_missing=False)
+    parser = parser.add_argument('lang', type=str, store_missing=False)
     parser = parser.add_argument(
         'imatge', type=FileStorage, location='files', store_missing=False
     )

@@ -3,6 +3,7 @@ from parser import parse_object_meal_category, parse_query_meal_category
 from db.sqlalchemy.sqlalchemy import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
+from logic.translation import get_translation
 from models import Meal, MealCategory
 from serialization import MealCategorySchema
 from sqlalchemy import func
@@ -96,7 +97,18 @@ class MealCategoriesResource(Resource):
         return MealCategorySchema().dump(category), 201
 
     def get(self):
+        params: dict = parse_query_meal_category()
+
+        # Language of the translations
+        lang = params.pop('lang', None)
+
+        # Categories to return
         categories = MealCategory.query.filter_by(
-            **parse_query_meal_category()
+            **params
         ).order_by(MealCategory.order, MealCategory.name)
+
+        # Translate categories
+        for category in categories:
+            category.name = get_translation(category.name, lang)
+
         return MealCategorySchema(many=True).dump(categories)
