@@ -21,7 +21,7 @@ class TranslationRecomendationResource(Resource):
         # Add the keys that doesn't exists as translations
         for key in keys:
             for language in Language:
-                if not Translation.query.filter_by(key=key, language=language).exists():
+                if not Translation.query.filter_by(key=key, language=language).first():
                     recommendations.append(dict(
                         key=key,
                         language=language.value
