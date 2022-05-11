@@ -23,6 +23,7 @@ def parse_query_meal() -> dict:
 
     parser = parser.add_argument('enabled', type=inputs.boolean, store_missing=False)
     parser = parser.add_argument('name', type=str, store_missing=False)
+    parser = parser.add_argument('lang', type=str, store_missing=False)
     parser = parser.add_argument('description', type=str, store_missing=False)
     parser = parser.add_argument('category', type=int, store_missing=False)
     parser = parser.add_argument('price', type=float, store_missing=False)

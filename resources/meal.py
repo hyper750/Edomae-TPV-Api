@@ -3,6 +3,7 @@ from parser import parse_object_meal, parse_query_meal
 from db.sqlalchemy.sqlalchemy import DB
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource
+from logic.translation import get_translation
 from models import Meal
 from serialization import MealSchema
 from sqlalchemy import func
@@ -67,9 +68,22 @@ class MealResource(Resource):
 class MealsResource(Resource):
 
     def get(self):
-        meals = Meal.query.filter_by(**parse_query_meal()).order_by(
+        # GET params
+        params: dict = parse_query_meal()
+
+        # Language to translate the meals
+        lang = params.pop('lang', None)
+
+        # Get meals to return
+        meals = Meal.query.filter_by(**params).order_by(
             Meal.order, Meal.category, Meal.name
         )
+
+        # Translate meals
+        for meal in meals:
+            meal.name = get_translation(meal.name, lang)
+            meal.description = get_translation(meal.description, lang)
+
         return MealSchema(many=True).dump(meals)
 
     @jwt_required()
